@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">bignumber</string>
+    <string name="choose_bigger">choose the bigger</string>
+    <string name="choose_smaller">choose the smaller</string>
+</resources>
