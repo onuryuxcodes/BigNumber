@@ -5,7 +5,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import io.hidro.bignumber.vm.BigNumberGameVM
 import io.hidro.bignumber.R
-import io.hidro.bignumber.util.VMFactory
 import io.hidro.bignumber.databinding.GameBinding
 
 class BigNumberGameActivity : BaseActivity() {
@@ -13,7 +12,7 @@ class BigNumberGameActivity : BaseActivity() {
     private lateinit var binding: GameBinding
 
     private val viewModel: BigNumberGameVM by lazy {
-        ViewModelProvider(this, VMFactory()).get(BigNumberGameVM::class.java)
+        ViewModelProvider(this)[BigNumberGameVM::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
