@@ -10,20 +10,15 @@ class BigNumberGameVM : ViewModel() {
     val numberPair = MutableLiveData<Pair<Int, Int>>()
 
     //Proportional to the probability of getting a hard question
-    private var currentLevel = 0
     private var currentStep = 0
-        set(value) {
-            if (value > 10) {
-                field = 0
-                currentLevel++
-            } else
-                field = value
-        }
+
 
     val timeIsUp = MutableLiveData(false)
 
+    private fun incrementStepNumber() = currentStep++
+
     fun generateNewNumbers() {
-        currentStep++
+        incrementStepNumber()
         numberPair.value = Pair(Random(10).nextInt(), Random(3).nextInt())
     }
 
@@ -56,9 +51,8 @@ class BigNumberGameVM : ViewModel() {
 
     }
 
-    fun getDurationForTheLevel(): Int {
-        return (Constants.allowedTimeInMsForEachTurn) +
-                (currentLevel * Constants.extraAllowedTimeInMsForEachLevelUp)
+    private fun getDurationForTheTurn(): Int {
+        return Constants.allowedTimeInMsForEachStep
     }
 
 }
