@@ -2,24 +2,27 @@ package io.hidro.bignumber.vm
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import io.hidro.bignumber.util.CommonMathFunctions
 import io.hidro.bignumber.util.Constants
-import kotlin.random.Random
 
 class BigNumberGameVM : ViewModel() {
 
-    val numberPair = MutableLiveData<Pair<Int, Int>>()
-
+    val numberPair = MutableLiveData<Pair<Double, Double>>()
     //Proportional to the probability of getting a hard question
     private var currentStep = 0
-
-
     val timeIsUp = MutableLiveData(false)
+    var currentLowerBound = 0
+    var currentUpperBound = 10000
 
     private fun incrementStepNumber() = currentStep++
 
     fun generateNewNumbers() {
         incrementStepNumber()
-        numberPair.value = Pair(Random(10).nextInt(), Random(3).nextInt())
+        val firstNumber = CommonMathFunctions.generateRandomInt(currentLowerBound, currentUpperBound).toDouble()
+        val delta = CommonMathFunctions.generateRandomDelta(currentStep)
+        numberPair.value = Pair(
+            firstNumber,
+            firstNumber+delta)
     }
 
     fun numberOnTheLeftIsChosen() {
@@ -34,7 +37,7 @@ class BigNumberGameVM : ViewModel() {
         }
     }
 
-    private fun evaluateUsersAnswer(usersChoiceAsTheBigOne:Int, theOtherNumber:Int){
+    private fun evaluateUsersAnswer(usersChoiceAsTheBigOne:Double, theOtherNumber:Double){
         numberPair.value?.let {
             when {
                 usersChoiceAsTheBigOne >= theOtherNumber -> {
