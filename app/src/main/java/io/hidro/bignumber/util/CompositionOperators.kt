@@ -1,5 +1,5 @@
 package io.hidro.bignumber.util
 
-enum class DecomposeOperators {
-    ADDITION, MULTIPLICATION, SUBTRACTION, DIVISION, NONE
+enum class CompositionOperators {
+    SUM, MULTIPLICATION, SUBTRACTION, DIVISION, NONE
 }

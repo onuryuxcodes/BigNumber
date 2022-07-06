@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import io.hidro.bignumber.vm.BigNumberGameVM
 import io.hidro.bignumber.R
 import io.hidro.bignumber.databinding.GameBinding
+import io.hidro.bignumber.util.FormattingFunctions
 
 class BigNumberGameActivity : BaseActivity() {
 
@@ -34,10 +35,9 @@ class BigNumberGameActivity : BaseActivity() {
     }
 
     private fun initializeGame() {
-        viewModel.numberPair.observe(this) {
-            binding.left.text = it.first.toString()
-            binding.right.text = it.second.toString()
-            startCountDownAnimation()
+        viewModel.composedNumberPair.observe(this) {
+            binding.left.text = FormattingFunctions.formatComposedNumbersForScreen(it.first)
+            binding.right.text = FormattingFunctions.formatComposedNumbersForScreen(it.second)
         }
     }
 

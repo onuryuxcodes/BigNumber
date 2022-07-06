@@ -13,5 +13,4 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="true"/>
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
