@@ -4,13 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/purple_700"
     tools:context=".view.MainActivity">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="300dp"
+        app:lottie_rawRes="@raw/brain"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"/>
+
+    
 
 </androidx.constraintlayout.widget.ConstraintLayout>
