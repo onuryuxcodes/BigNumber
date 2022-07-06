@@ -44,6 +44,10 @@ dependencies {
     // ReactiveStreams support for LiveData
     implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"
 
+    // Animations
+    def lottieVersion = "5.2.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
     // Views
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
     implementation 'androidx.core:core-ktx:1.8.0'
