@@ -25,9 +25,11 @@ class FormattingFunctions {
         }
 
         private fun formatSingleDouble(singleDouble: Double?): String {
-            val doubleVal = singleDouble?:0.0
-            return if (doubleVal % 1 == 0.0) singleDouble?.toInt().toString()
-            else singleDouble.toString()
+            singleDouble?.let { doubleVal ->
+                return if (doubleVal % 1 == 0.0) doubleVal.toInt().toString()
+                else doubleVal.toString()
+            }
+            return ""
         }
 
         private fun formatOperator(operator: CompositionOperators): String {
