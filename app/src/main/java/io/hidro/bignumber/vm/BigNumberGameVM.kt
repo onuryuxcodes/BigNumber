@@ -7,6 +7,7 @@ import io.hidro.bignumber.util.CommonMathFunctions
 import io.hidro.bignumber.util.CommonMathFunctions.Companion.roundToOneDecimal
 import io.hidro.bignumber.util.CompositionOperators
 import io.hidro.bignumber.util.Constants
+import kotlin.random.Random
 
 class BigNumberGameVM : ViewModel() {
 
@@ -24,27 +25,31 @@ class BigNumberGameVM : ViewModel() {
     fun generateNewNumbers() {
         incrementStepNumber()
         val firstNumber = roundToOneDecimal(
-            CommonMathFunctions.generateRandomInt(currentLowerBound, currentUpperBound).toDouble())
+            CommonMathFunctions.generateRandomInt(currentLowerBound, currentUpperBound).toDouble()
+        )
         val delta = CommonMathFunctions.generateRandomDelta(currentStep)
         val secondNumber = roundToOneDecimal(firstNumber + delta)
         numberPair.value = Pair(
             firstNumber,
             secondNumber
         )
-        composedNumberPair.value = Pair(
-            ComposedNumber(
-                unit1 = CommonMathFunctions.compose(
-                    firstNumber,
-                    CompositionOperators.SUM
-                )
-            ),
-            ComposedNumber(
-                unit1 = CommonMathFunctions.compose(
-                    secondNumber,
-                    CompositionOperators.SUM
-                )
+        val composedNumber1 = ComposedNumber(
+            unit1 = CommonMathFunctions.compose(
+                firstNumber,
+                CompositionOperators.SUM
             )
         )
+        val composedNumber2 = ComposedNumber(
+            unit1 = CommonMathFunctions.compose(
+                secondNumber,
+                CompositionOperators.NONE
+            )
+        )
+        if (Random.nextBoolean())
+            composedNumberPair.value = Pair(composedNumber1, composedNumber2)
+        else
+            composedNumberPair.value = Pair(composedNumber2, composedNumber1)
+
     }
 
     fun numberOnTheLeftIsChosen() {

@@ -5,7 +5,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/purple_700">
+
+        <View
+            android:id="@+id/time_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/time"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/title_container"
@@ -19,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/arial_rounded_bold"
                 android:text="@string/choose_bigger"
-                android:textColor="@color/purple_500"
+                android:textColor="@color/white"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -40,10 +49,14 @@
             app:layout_constraintTop_toBottomOf="@+id/title_container" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/left_card"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             app:layout_constraintBottom_toBottomOf="@+id/mid"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="@+id/mid"
@@ -51,7 +64,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/purple_pinkish">
 
                 <TextView
                     android:id="@+id/left"
@@ -70,10 +84,14 @@
 
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/right_card"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             app:layout_constraintBottom_toBottomOf="@+id/mid"
             app:layout_constraintLeft_toLeftOf="@+id/mid"
             app:layout_constraintRight_toRightOf="parent"
@@ -81,7 +99,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/purple_pinkish">
 
                 <TextView
                     android:id="@+id/right"
