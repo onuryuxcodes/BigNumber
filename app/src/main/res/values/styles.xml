@@ -4,6 +4,7 @@
     <style name="OptionText">
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/black</item>
+        <item name= "android:fontFamily">@font/arial_rounded_bold</item>
     </style>
 
 </resources>
