@@ -18,7 +18,8 @@ class BigNumberGameVM : ViewModel() {
     private var currentStep = 0
     val timeIsUp = MutableLiveData(false)
     var currentLowerBound = 0
-    var currentUpperBound = 10000
+    private var currentUpperBound = 100
+    private var currentDeltaUpperBound = 100.0
 
     private fun incrementStepNumber() = currentStep++
 
@@ -27,12 +28,8 @@ class BigNumberGameVM : ViewModel() {
         val firstNumber = roundToOneDecimal(
             CommonMathFunctions.generateRandomInt(currentLowerBound, currentUpperBound).toDouble()
         )
-        val delta = CommonMathFunctions.generateRandomDelta(currentStep)
+        val delta = CommonMathFunctions.generateRandomDelta(currentStep, currentDeltaUpperBound)
         val secondNumber = roundToOneDecimal(firstNumber + delta)
-        numberPair.value = Pair(
-            firstNumber,
-            secondNumber
-        )
         val composedNumber1 = ComposedNumber(
             unit1 = CommonMathFunctions.compose(
                 firstNumber,
@@ -45,10 +42,14 @@ class BigNumberGameVM : ViewModel() {
                 CompositionOperators.NONE
             )
         )
-        if (Random.nextBoolean())
+        if (Random.nextBoolean()) {
             composedNumberPair.value = Pair(composedNumber1, composedNumber2)
-        else
+            numberPair.value = Pair(firstNumber, secondNumber)
+        } else {
+            numberPair.value = Pair(secondNumber, firstNumber)
             composedNumberPair.value = Pair(composedNumber2, composedNumber1)
+        }
+
 
     }
 

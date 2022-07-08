@@ -27,8 +27,8 @@ class CommonMathFunctions {
          * Probability of delta being smaller increases disproportionally to [currentStep]
          * Delta's range is [minDelta] to 100
          */
-        fun generateRandomDelta(currentStep: Int): Double {
-            var randomDelta = (Random.nextDouble(0.0, 1000.0 / (currentStep + 1))) / 10
+        fun generateRandomDelta(currentStep: Int, upperBound: Double): Double {
+            var randomDelta = (Random.nextDouble(0.0, upperBound / (currentStep + 1))) / 10
             if (randomDelta < minDelta)
                 randomDelta = minDelta
             if (Random.nextBoolean())
