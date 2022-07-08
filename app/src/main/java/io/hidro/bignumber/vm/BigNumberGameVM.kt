@@ -13,6 +13,8 @@ class BigNumberGameVM : ViewModel() {
 
     private val numberPair = MutableLiveData<Pair<Double, Double>>()
     val composedNumberPair = MutableLiveData<Pair<ComposedNumber, ComposedNumber>>()
+    val score = MutableLiveData<Int>(0)
+    private var timeUserStartedTheCurrentStep: Long = 0L
 
     //Proportional to the probability of getting a hard question
     private var currentStep = 0
@@ -20,6 +22,7 @@ class BigNumberGameVM : ViewModel() {
     var currentLowerBound = 0
     private var currentUpperBound = 100
     private var currentDeltaUpperBound = 100.0
+
 
     private fun incrementStepNumber() = currentStep++
 
@@ -43,13 +46,13 @@ class BigNumberGameVM : ViewModel() {
             )
         )
         if (Random.nextBoolean()) {
-            composedNumberPair.value = Pair(composedNumber1, composedNumber2)
             numberPair.value = Pair(firstNumber, secondNumber)
+            composedNumberPair.value = Pair(composedNumber1, composedNumber2)
         } else {
             numberPair.value = Pair(secondNumber, firstNumber)
             composedNumberPair.value = Pair(composedNumber2, composedNumber1)
         }
-
+        timeUserStartedTheCurrentStep = System.currentTimeMillis()
 
     }
 
@@ -69,6 +72,7 @@ class BigNumberGameVM : ViewModel() {
         numberPair.value?.let {
             when {
                 usersChoiceAsTheBigOne >= theOtherNumber -> {
+                    updateScore()
                     generateNewNumbers()
                 }
                 else -> {
@@ -78,8 +82,21 @@ class BigNumberGameVM : ViewModel() {
         }
     }
 
+    private fun updateScore() {
+        val timeItTookUserToRespond = System.currentTimeMillis() - timeUserStartedTheCurrentStep
+        val scoreFromCurrentStep = CommonMathFunctions.generateScoreForCurrentStep(
+            currentStep,
+            timeItTookUserToRespond.toInt()
+        )
+        score.value = score.value?.plus(scoreFromCurrentStep)
+    }
+
     private fun endGame() {
 
+    }
+
+    private fun getCurrentLevel(): Int {
+        return currentStep / 10
     }
 
     private fun getDurationForTheTurn(): Int {

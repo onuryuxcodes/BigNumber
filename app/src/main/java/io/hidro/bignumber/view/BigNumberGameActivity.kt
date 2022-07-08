@@ -6,6 +6,7 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import io.hidro.bignumber.databinding.GameBinding
 import io.hidro.bignumber.util.FormattingFunctions
@@ -29,6 +30,7 @@ class BigNumberGameActivity : BaseActivity() {
         observeNumberSelection()
         observeIfTimeIsUp()
         startTheGame()
+        observeScore()
     }
 
     private fun observeNumberSelection() {
@@ -45,6 +47,12 @@ class BigNumberGameActivity : BaseActivity() {
             binding.left.text = FormattingFunctions.formatComposedNumbersForScreen(it.first)
             binding.right.text = FormattingFunctions.formatComposedNumbersForScreen(it.second)
             startCountDownAnimation()
+        }
+    }
+
+    private fun observeScore(){
+        viewModel.score.observe(this) {
+            binding.score.text = it.toString()
         }
     }
 

@@ -1,13 +1,15 @@
 package io.hidro.bignumber.util
 
 import kotlin.math.abs
+import kotlin.math.ceil
+import kotlin.math.floor
 import kotlin.math.roundToInt
 import kotlin.random.Random
 
 class CommonMathFunctions {
     companion object {
 
-        fun roundToOneDecimal(number:Double):Double{
+        fun roundToOneDecimal(number: Double): Double {
             return (number * 10.0).roundToInt() / 10.0
         }
 
@@ -22,6 +24,7 @@ class CommonMathFunctions {
         }
 
         const val minDelta = 0.3
+
         /**
          * Returns a random integer between 0.1 to 100
          * Probability of delta being smaller increases disproportionally to [currentStep]
@@ -74,7 +77,11 @@ class CommonMathFunctions {
                 CompositionOperators.SUM -> {
                     val firstPart = Random.nextInt(0, number.toInt())
                     val secondPart = number - firstPart
-                    return Triple(roundToOneDecimal(firstPart.toDouble()), roundToOneDecimal(secondPart), operation)
+                    return Triple(
+                        roundToOneDecimal(firstPart.toDouble()),
+                        roundToOneDecimal(secondPart),
+                        operation
+                    )
                 }
                 CompositionOperators.SUBTRACTION -> {
                     val coefficient = Random.nextDouble(1.0, 3.0)
@@ -96,6 +103,12 @@ class CommonMathFunctions {
                     return Triple(number, null, operation)
                 }
             }
+        }
+
+        fun generateScoreForCurrentStep(currentStep: Int, responseTimeInMs: Int): Int {
+            val responseTimeInSec = ceil(responseTimeInMs / 1000.0)
+            val levelWeight = ceil((currentStep + 1) / 10.0)
+            return (ceil(levelWeight * 10) + ceil(responseTimeInSec * 10)).toInt()
         }
 
     }
