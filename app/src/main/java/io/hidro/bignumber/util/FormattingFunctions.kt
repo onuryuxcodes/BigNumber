@@ -26,8 +26,8 @@ class FormattingFunctions {
 
         private fun formatSingleDouble(singleDouble: Double?): String {
             singleDouble?.let { doubleVal ->
-                return if (doubleVal % 1 == 0.0) doubleVal.toInt().toString()
-                else doubleVal.toString()
+                return if (doubleVal % 1 == 0.0) doubleVal.toInt().toString().replace(".",",")
+                else doubleVal.toString().replace(".",",")
             }
             return ""
         }
