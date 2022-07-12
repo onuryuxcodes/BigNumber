@@ -10,4 +10,5 @@
     <color name="gray">#DDDDDD</color>
     <color name="white">#FFFFFFFF</color>
     <color name="time">#00FF00</color>
+    <color name="score">#5077D4</color>
 </resources>

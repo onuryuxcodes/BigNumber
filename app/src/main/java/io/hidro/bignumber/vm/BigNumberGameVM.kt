@@ -1,19 +1,23 @@
 package io.hidro.bignumber.vm
 
+import android.os.CountDownTimer
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import io.hidro.bignumber.model.BigNumberGame
 import io.hidro.bignumber.model.ComposedNumber
 import io.hidro.bignumber.util.CommonMathFunctions
 import io.hidro.bignumber.util.CommonMathFunctions.Companion.roundToOneDecimal
 import io.hidro.bignumber.util.CompositionOperators
 import io.hidro.bignumber.util.Constants
+import io.hidro.bignumber.util.Constants.Companion.additionalTimeInMsForEachLevel
 import kotlin.random.Random
 
 class BigNumberGameVM : ViewModel() {
 
+    val bigNumberGame = MutableLiveData<BigNumberGame>()
     private val numberPair = MutableLiveData<Pair<Double, Double>>()
     val composedNumberPair = MutableLiveData<Pair<ComposedNumber, ComposedNumber>>()
-    val score = MutableLiveData<Int>(0)
+    val score = MutableLiveData(0)
     private var timeUserStartedTheCurrentStep: Long = 0L
 
     //Proportional to the probability of getting a hard question
@@ -22,6 +26,7 @@ class BigNumberGameVM : ViewModel() {
     var currentLowerBound = 0
     private var currentUpperBound = 100
     private var currentDeltaUpperBound = 100.0
+    private var timer: CountDownTimer? = null
 
 
     private fun incrementStepNumber() = currentStep++
@@ -74,6 +79,7 @@ class BigNumberGameVM : ViewModel() {
                 usersChoiceAsTheBigOne >= theOtherNumber -> {
                     updateScore()
                     generateNewNumbers()
+                    restartCountdownTimer()
                 }
                 else -> {
                     endGame()
@@ -91,6 +97,16 @@ class BigNumberGameVM : ViewModel() {
         score.value = score.value?.plus(scoreFromCurrentStep)
     }
 
+    private fun restartCountdownTimer() {
+        timer?.cancel()
+        timer = object : CountDownTimer(getDurationForTheTurn(), 1000) {
+            override fun onTick(millisUntilFinished: Long) {}
+            override fun onFinish() {
+                timeIsUp.value = true
+            }
+        }.start()
+    }
+
     private fun endGame() {
 
     }
@@ -99,8 +115,8 @@ class BigNumberGameVM : ViewModel() {
         return currentStep / 10
     }
 
-    private fun getDurationForTheTurn(): Int {
-        return Constants.allowedTimeInMsForEachStep
+    fun getDurationForTheTurn(): Long {
+        return Constants.allowedTimeInMsForEachStep + (getCurrentLevel() * additionalTimeInMsForEachLevel).toLong()
     }
 
 }

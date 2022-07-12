@@ -1,14 +1,16 @@
 package io.hidro.bignumber.view
 
-import io.hidro.bignumber.R
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import io.hidro.bignumber.R
 import io.hidro.bignumber.databinding.GameBinding
+import io.hidro.bignumber.model.isOnGoing
+import io.hidro.bignumber.util.Constants.Companion.SCORE_KEY
 import io.hidro.bignumber.util.FormattingFunctions
 import io.hidro.bignumber.vm.BigNumberGameVM
 
@@ -31,6 +33,7 @@ class BigNumberGameActivity : BaseActivity() {
         observeIfTimeIsUp()
         startTheGame()
         observeScore()
+        observeGameObject()
     }
 
     private fun observeNumberSelection() {
@@ -50,9 +53,9 @@ class BigNumberGameActivity : BaseActivity() {
         }
     }
 
-    private fun observeScore(){
+    private fun observeScore() {
         viewModel.score.observe(this) {
-            binding.score.text = it.toString()
+            binding.score.text = getString(R.string.score, it.toString())
         }
     }
 
@@ -70,26 +73,32 @@ class BigNumberGameActivity : BaseActivity() {
     }
 
     private fun loadCountDownAnimation() {
-        countDownAnimation = AnimationUtils.loadAnimation(applicationContext, R.anim.slide_from_left)
+        countDownAnimation =
+            AnimationUtils.loadAnimation(applicationContext, R.anim.slide_from_left)
     }
 
     private fun startCountDownAnimation() {
         if (this::countDownAnimation.isInitialized) {
             countDownAnimation.cancel()
-            countDownAnimation.duration = 5000
+            countDownAnimation.duration = viewModel.getDurationForTheTurn()
             binding.timeIndicator.startAnimation(countDownAnimation)
         }
     }
 
     private fun showGameEndedUI() {
         countDownAnimation.cancel()
+        val resultIntent = Intent()
+        viewModel.score.value?.let {
+            resultIntent.putExtra(SCORE_KEY, it)
+        }
+        setResult(RESULT_OK, resultIntent)
+        finish()
     }
 
-    override fun onPause() {
-        super.onPause()
-    }
-
-    override fun onResume() {
-        super.onResume()
+    private fun observeGameObject() {
+        viewModel.bigNumberGame.observe(this) {
+            if (!it.isOnGoing())
+                showGameEndedUI()
+        }
     }
 }

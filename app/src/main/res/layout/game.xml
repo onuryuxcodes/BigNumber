@@ -41,11 +41,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/arial_rounded_bold"
-                android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textColor="@color/score"
+                android:textSize="14sp"
+                tools:text="Score:100"
+                android:layout_marginStart="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
