@@ -3,6 +3,7 @@ package io.hidro.bignumber.vm
 import android.os.CountDownTimer
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import io.hidro.bignumber.model.BigNumberGame
 import io.hidro.bignumber.model.ComposedNumber
 import io.hidro.bignumber.util.CommonMathFunctions
@@ -19,6 +20,7 @@ class BigNumberGameVM : ViewModel() {
     val composedNumberPair = MutableLiveData<Pair<ComposedNumber, ComposedNumber>>()
     val score = MutableLiveData(0)
     private var timeUserStartedTheCurrentStep: Long = 0L
+    private var gameStartTimeInMs: Long? = null
 
     //Proportional to the probability of getting a hard question
     private var currentStep = 0
@@ -32,6 +34,8 @@ class BigNumberGameVM : ViewModel() {
     private fun incrementStepNumber() = currentStep++
 
     fun generateNewNumbers() {
+        if (gameStartTimeInMs == null)
+            gameStartTimeInMs = System.currentTimeMillis()
         incrementStepNumber()
         val firstNumber = roundToOneDecimal(
             CommonMathFunctions.generateRandomInt(currentLowerBound, currentUpperBound).toDouble()
@@ -108,7 +112,7 @@ class BigNumberGameVM : ViewModel() {
     }
 
     private fun endGame() {
-
+        bigNumberGame.value = BigNumberGame(gameStartTimeInMs ?: 0L, System.currentTimeMillis())
     }
 
     private fun getCurrentLevel(): Int {

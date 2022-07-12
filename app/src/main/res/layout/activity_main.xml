@@ -30,6 +30,19 @@
             android:textSize="20sp"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/reminder_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/arial_rounded_bold"
+            android:gravity="center"
+            android:textColor="@color/score"
+            android:textSize="17sp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@+id/main_text"
+            tools:text="Highest Score was 2002." />
+
         <Button
             android:id="@+id/play"
             android:layout_width="match_parent"
