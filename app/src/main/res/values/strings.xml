@@ -7,6 +7,6 @@
     <string name="score">Score:%1$s</string>
     <string name="new_high_score">A new High Score:%1$d!</string>
     <string name="your_score">Your Score This Time:%1$d</string>
-    <string name="high_score_reminder">Highest Score was:%1$d.</string>
+    <string name="high_score_reminder">Highest Score was:%1$d</string>
     <string name="pitch">Just pick the bigger number.</string>
 </resources>
