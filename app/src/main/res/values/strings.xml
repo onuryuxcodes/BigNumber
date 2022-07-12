@@ -3,5 +3,9 @@
     <string name="choose_bigger">choose the bigger</string>
     <string name="choose_smaller">choose the smaller</string>
     <string name="play">Play</string>
+    <string name="play_again">Play Again!</string>
+    <string name="score">Score:%1$s</string>
+    <string name="new_high_score">A new High Score:%1$d!</string>
+    <string name="your_score">Your Score This Time:%1$d</string>
     <string name="pitch">Just pick the bigger number.</string>
 </resources>
