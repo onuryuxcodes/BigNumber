@@ -1,5 +1,6 @@
 package io.hidro.bignumber.view
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.activity.result.ActivityResultLauncher
@@ -10,4 +11,6 @@ open class BaseActivity : AppCompatActivity() {
     fun goToActivity(intent: Intent, content: ActivityResultLauncher<Intent>) {
         content.launch(intent)
     }
+
+    fun getSharedPreferences() =  getPreferences(Context.MODE_PRIVATE)
 }
