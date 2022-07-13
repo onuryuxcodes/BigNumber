@@ -12,4 +12,5 @@
     <color name="time">#00FF00</color>
     <color name="faded_blue">#5077D4</color>
     <color name="bubble_gum">#FF55A3</color>
+    <color name="background">#3700B3</color>
 </resources>

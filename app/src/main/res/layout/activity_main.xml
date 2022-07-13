@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/purple_700"
+        android:background="@color/background"
         tools:context=".view.MainActivity">
 
         <com.airbnb.lottie.LottieAnimationView
@@ -17,7 +17,6 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/brain" />
-        
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/main_text_container"
