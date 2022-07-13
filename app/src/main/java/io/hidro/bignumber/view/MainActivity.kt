@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import com.google.android.play.core.review.ReviewManagerFactory
 import io.hidro.bignumber.R
 import io.hidro.bignumber.databinding.ActivityMainBinding
+import io.hidro.bignumber.util.Constants.Companion.CORRECT_ANSWER
 import io.hidro.bignumber.util.Constants.Companion.HIGH_SCORE_KEY
 import io.hidro.bignumber.util.Constants.Companion.PLAY_COUNT
 import io.hidro.bignumber.util.Constants.Companion.SCORE_KEY
@@ -27,7 +28,8 @@ class MainActivity : BaseActivity() {
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
                 val score = it.data?.getIntExtra(SCORE_KEY, 0)
-                showGameEndedUI(score)
+                val verbalAnswer = it.data?.getStringExtra(CORRECT_ANSWER)
+                showGameEndedUI(score, verbalAnswer)
                 if (showRatePopupCondition())
                     showRatePopup()
             }
@@ -59,7 +61,7 @@ class MainActivity : BaseActivity() {
     private fun showRatePopupCondition() =
         getSuccessfulGamePlayCount() == countOfGamePlayToShowRatePopup
 
-    private fun showGameEndedUI(score: Int?) {
+    private fun showGameEndedUI(score: Int?, correctAnswer: String?) {
         binding.play.text = getString(R.string.play_again)
         score?.let {
             val highestScore = getHighestScore()
@@ -70,6 +72,9 @@ class MainActivity : BaseActivity() {
                 showANewHighScoreUI(score)
             } else
                 showPlayAgainUI(score, highestScore)
+        }
+        correctAnswer?.let {
+            binding.verbalAnswer.text = it
         }
     }
 

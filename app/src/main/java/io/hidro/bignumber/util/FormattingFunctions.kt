@@ -5,14 +5,16 @@ import io.hidro.bignumber.model.hasSecondUnit
 
 class FormattingFunctions {
     companion object {
-        fun formatComposedNumbersForScreen(composedNumber: ComposedNumber): String {
-            if (!composedNumber.hasSecondUnit()) {
-                return formatSingleUnit(composedNumber.unit1)
-            } else {
-                composedNumber.midOperator?.let { midOperator ->
-                    return "(" + formatSingleUnit(composedNumber.unit1) + ")" + formatOperator(
-                        midOperator
-                    ) + "(" + formatSingleUnit(composedNumber.unit2!!) + ")"
+        fun formatComposedNumbersForScreen(composedNumber: ComposedNumber?): String {
+            if (composedNumber != null) {
+                if (!composedNumber.hasSecondUnit()) {
+                    return formatSingleUnit(composedNumber.unit1)
+                } else {
+                    composedNumber.midOperator?.let { midOperator ->
+                        return "(" + formatSingleUnit(composedNumber.unit1) + ")" + formatOperator(
+                            midOperator
+                        ) + "(" + formatSingleUnit(composedNumber.unit2!!) + ")"
+                    }
                 }
             }
             return ""
@@ -26,8 +28,8 @@ class FormattingFunctions {
 
         private fun formatSingleDouble(singleDouble: Double?): String {
             singleDouble?.let { doubleVal ->
-                return if (doubleVal % 1 == 0.0) doubleVal.toInt().toString().replace(".",",")
-                else doubleVal.toString().replace(".",",")
+                return if (doubleVal % 1 == 0.0) doubleVal.toInt().toString().replace(".", ",")
+                else doubleVal.toString().replace(".", ",")
             }
             return ""
         }

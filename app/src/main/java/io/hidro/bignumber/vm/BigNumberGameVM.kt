@@ -28,6 +28,7 @@ class BigNumberGameVM : ViewModel() {
     private var currentUpperBound = 100
     private var currentDeltaUpperBound = 100.0
     private var timer: CountDownTimer? = null
+    var isTheOneOnTheRightChosen:Boolean? = null
 
 
     private fun incrementStepNumber() = currentStep++
@@ -61,17 +62,18 @@ class BigNumberGameVM : ViewModel() {
             composedNumberPair.value = Pair(composedNumber2, composedNumber1)
         }
         timeUserStartedTheCurrentStep = System.currentTimeMillis()
-
     }
 
     fun numberOnTheLeftIsChosen() {
         numberPair.value?.let { numberPair ->
+            isTheOneOnTheRightChosen = false
             evaluateUsersAnswer(numberPair.first, numberPair.second)
         }
     }
 
     fun numberOnTheRightIsChosen() {
         numberPair.value?.let { numberPair ->
+            isTheOneOnTheRightChosen = true
             evaluateUsersAnswer(numberPair.second, numberPair.first)
         }
     }

@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import io.hidro.bignumber.R
 import io.hidro.bignumber.databinding.GameBinding
 import io.hidro.bignumber.model.isOnGoing
+import io.hidro.bignumber.util.Constants.Companion.CORRECT_ANSWER
 import io.hidro.bignumber.util.Constants.Companion.SCORE_KEY
 import io.hidro.bignumber.util.FormattingFunctions
 import io.hidro.bignumber.vm.BigNumberGameVM
@@ -85,11 +86,14 @@ class BigNumberGameActivity : BaseActivity() {
         }
     }
 
-    private fun showGameEndedUI() {
+    private fun showGameEndedUI(verballyConstructedCorrectAnswer: String? = null) {
         countDownAnimation.cancel()
         val resultIntent = Intent()
         viewModel.score.value?.let {
             resultIntent.putExtra(SCORE_KEY, it)
+        }
+        verballyConstructedCorrectAnswer?.let {
+            resultIntent.putExtra(CORRECT_ANSWER, it)
         }
         setResult(RESULT_OK, resultIntent)
         finish()
@@ -97,8 +101,26 @@ class BigNumberGameActivity : BaseActivity() {
 
     private fun observeGameObject() {
         viewModel.bigNumberGame.observe(this) {
-            if (!it.isOnGoing())
-                showGameEndedUI()
+            var verballyConstructedCorrectAnswer: String? = null
+            if (!it.isOnGoing()) {
+                viewModel.isTheOneOnTheRightChosen?.let { isTheOneOnTheRightChosen ->
+                    verballyConstructedCorrectAnswer = if (isTheOneOnTheRightChosen)
+                        getString(
+                            R.string.verbally_constructed_correct_answer,
+                            FormattingFunctions.formatComposedNumbersForScreen(viewModel.composedNumberPair.value?.first),
+                            FormattingFunctions.formatComposedNumbersForScreen(viewModel.composedNumberPair.value?.second)
+                        )
+                    else
+                        getString(
+                            R.string.verbally_constructed_correct_answer,
+                            FormattingFunctions.formatComposedNumbersForScreen(viewModel.composedNumberPair.value?.second),
+                            FormattingFunctions.formatComposedNumbersForScreen(viewModel.composedNumberPair.value?.first)
+                        )
+
+                }
+                showGameEndedUI(verballyConstructedCorrectAnswer)
+            }
+
         }
     }
 }
