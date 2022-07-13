@@ -30,18 +30,28 @@
             android:textColor="@color/white"
             android:textSize="17sp"
             android:lineSpacingExtra="10dp"
-            android:text="@string/lorem_ipsum"
+            android:text="@string/about_this_game"
             app:layout_constraintTop_toBottomOf="@+id/about_title" />
+
+        <TextView
+            android:id="@+id/about_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/arial_rounded_bold"
+            android:textSize="17sp"
+            android:lineSpacingExtra="10dp"
+            android:text="@string/onur_web_hyper_link"
+            app:layout_constraintTop_toBottomOf="@+id/about_text" />
 
         <TextView
             android:id="@+id/close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:padding="20dp"
             android:fontFamily="@font/arial_rounded_bold"
             android:textColor="@color/bubble_gum"
-            android:textSize="32sp"
-            android:lineSpacingExtra="10dp"
+            android:textSize="42sp"
             android:text="x"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>

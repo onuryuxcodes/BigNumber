@@ -6,5 +6,6 @@ class Constants {
         const val HIGH_SCORE_KEY = "HIGH_SCORE"
         const val PLAY_COUNT = "PLAY_COUNT"
         const val SUCCESSFUL_GAME_PLAY_COUNT = "SUCCESSFUL_GAME_PLAY_COUNT"
+        const val ONUR_PERSONAL_WEB = "https://onur.es/"
     }
 }
