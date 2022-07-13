@@ -10,5 +10,6 @@
     <color name="gray">#DDDDDD</color>
     <color name="white">#FFFFFFFF</color>
     <color name="time">#00FF00</color>
-    <color name="score">#5077D4</color>
+    <color name="faded_blue">#5077D4</color>
+    <color name="bubble_gum">#FF55A3</color>
 </resources>

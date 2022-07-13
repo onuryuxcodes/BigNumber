@@ -2,6 +2,7 @@ package io.hidro.bignumber.view
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -12,5 +13,7 @@ open class BaseActivity : AppCompatActivity() {
         content.launch(intent)
     }
 
-    fun getSharedPreferences() =  getPreferences(Context.MODE_PRIVATE)
+    fun goToActivity(intent: Intent) = startActivity(intent)
+
+    fun getSharedPreferences(): SharedPreferences =  getPreferences(Context.MODE_PRIVATE)
 }

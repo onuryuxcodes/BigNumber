@@ -8,7 +8,6 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import com.google.android.play.core.review.ReviewManagerFactory
-import com.google.android.play.core.review.model.ReviewErrorCode
 import io.hidro.bignumber.R
 import io.hidro.bignumber.databinding.ActivityMainBinding
 import io.hidro.bignumber.util.Constants.Companion.HIGH_SCORE_KEY
@@ -37,10 +36,21 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        setClickListeners()
+        checkForHighestScoreReminder()
+    }
+
+    private fun setClickListeners() {
         binding.play.setOnClickListener {
             incrementPlayCount()
             goToActivity(Intent(this, BigNumberGameActivity::class.java), receiverForActivityResult)
         }
+        binding.aboutText.setOnClickListener {
+            goToActivity(Intent(this, AboutActivity::class.java))
+        }
+    }
+
+    private fun checkForHighestScoreReminder() {
         getHighestScore().let {
             if (it > 0) showHighestScoreReminder(it)
         }

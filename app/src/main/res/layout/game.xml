@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/arial_rounded_bold"
-                android:textColor="@color/score"
+                android:textColor="@color/faded_blue"
                 android:textSize="14sp"
                 tools:text="Score:100"
                 android:layout_marginStart="20dp"
