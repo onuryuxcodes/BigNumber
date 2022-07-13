@@ -3,14 +3,13 @@ package io.hidro.bignumber.vm
 import android.os.CountDownTimer
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import io.hidro.bignumber.model.BigNumberGame
 import io.hidro.bignumber.model.ComposedNumber
 import io.hidro.bignumber.util.CommonMathFunctions
 import io.hidro.bignumber.util.CommonMathFunctions.Companion.roundToOneDecimal
 import io.hidro.bignumber.util.CompositionOperators
-import io.hidro.bignumber.util.Constants
-import io.hidro.bignumber.util.Constants.Companion.additionalTimeInMsForEachLevel
+import io.hidro.bignumber.util.GameParameters
+import io.hidro.bignumber.util.GameParameters.Companion.additionalTimeInMsForEachLevel
 import kotlin.random.Random
 
 class BigNumberGameVM : ViewModel() {
@@ -120,7 +119,7 @@ class BigNumberGameVM : ViewModel() {
     }
 
     fun getDurationForTheTurn(): Long {
-        return Constants.allowedTimeInMsForEachStep + (getCurrentLevel() * additionalTimeInMsForEachLevel).toLong()
+        return GameParameters.allowedTimeInMsForEachStep + (getCurrentLevel() * additionalTimeInMsForEachLevel).toLong()
     }
 
 }
