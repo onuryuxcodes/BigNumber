@@ -75,7 +75,10 @@ class CommonMathFunctions {
         ): Triple<Double, Double?, CompositionOperators> {
             when (operation) {
                 CompositionOperators.SUM -> {
-                    val firstPart = Random.nextInt(0, number.toInt())
+                    var bound = number.toInt()
+                    if (bound == 0)
+                        bound++
+                    val firstPart = Random.nextInt(0, bound)
                     val secondPart = number - firstPart
                     return Triple(
                         roundToOneDecimal(firstPart.toDouble()),
