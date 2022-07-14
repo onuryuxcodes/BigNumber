@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
+import com.google.android.gms.ads.MobileAds
 import com.google.android.play.core.review.ReviewManagerFactory
 import io.hidro.bignumber.R
 import io.hidro.bignumber.databinding.ActivityMainBinding
@@ -17,6 +18,7 @@ import io.hidro.bignumber.util.Constants.Companion.SCORE_KEY
 import io.hidro.bignumber.util.Constants.Companion.SUCCESSFUL_GAME_PLAY_COUNT
 import io.hidro.bignumber.util.GameParameters.Companion.countOfGamePlayToShowRatePopup
 import io.hidro.bignumber.util.GameParameters.Companion.successfulGamePlayMinScore
+
 
 class MainActivity : BaseActivity() {
 
@@ -40,6 +42,7 @@ class MainActivity : BaseActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setClickListeners()
         checkForHighestScoreReminder()
+        initAdMob()
     }
 
     private fun setClickListeners() {
@@ -151,6 +154,9 @@ class MainActivity : BaseActivity() {
                 Log.d("review task exception", task.exception?.message ?: "")
             }
         }
+    }
 
+    private fun initAdMob(){
+        MobileAds.initialize(this) {}
     }
 }
