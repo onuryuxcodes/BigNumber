@@ -18,66 +18,67 @@
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/brain" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/main_text_container"
-                app:layout_constraintTop_toTopOf="parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_text_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/arial_rounded_bold"
+                android:gravity="center"
+                android:src="@drawable/ic_big_number"
+                android:text="@string/app_name"
+                android:textColor="@color/bubble_gum"
+                android:textSize="36sp"
+                android:layout_marginTop="40dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/verbal_answer"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintHeight_percent="0.5">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/arial_rounded_bold"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toTopOf="@+id/main_text"
+                tools:text="80,2 is actually greater than 80+1" />
 
-                <TextView
-                    android:src="@drawable/ic_big_number"
-                    android:id="@+id/logo"
-                    android:gravity="center"
-                    android:fontFamily="@font/arial_rounded_bold"
-                    android:textColor="@color/bubble_gum"
-                    android:textSize="36sp"
-                    android:text="@string/app_name"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="100dp"/>
+            <TextView
+                android:id="@+id/main_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/arial_rounded_bold"
+                android:gravity="center"
+                android:text="@string/pitch"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/verbal_answer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/arial_rounded_bold"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="17sp"
-                    app:layout_constraintBottom_toTopOf="@+id/main_text"
-                    tools:text="80,2 is actually greater than 80+1" />
+            <TextView
+                android:id="@+id/reminder_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/arial_rounded_bold"
+                android:gravity="center"
+                android:textColor="@color/faded_blue"
+                android:textSize="17sp"
+                android:visibility="invisible"
+                app:layout_constraintTop_toBottomOf="@+id/main_text"
+                tools:text="Highest Score was 2002."
+                tools:visibility="visible" />
 
-                <TextView
-                    android:id="@+id/main_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/arial_rounded_bold"
-                    android:gravity="center"
-                    android:text="@string/pitch"
-                    android:textColor="@color/white"
-                    android:textSize="25sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/reminder_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/arial_rounded_bold"
-                    android:gravity="center"
-                    android:textColor="@color/faded_blue"
-                    android:textSize="17sp"
-                    android:visibility="invisible"
-                    app:layout_constraintTop_toBottomOf="@+id/main_text"
-                    tools:text="Highest Score was 2002."
-                    tools:visibility="visible" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/title_layout"
@@ -86,25 +87,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:visibility="invisible"
-                android:id="@+id/app_title_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/arial_rounded_bold"
-                android:gravity="center"
-                android:text="@string/app_name"
-                android:textColor="@color/white"
-                android:textSize="25sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
                 android:id="@+id/about_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/arial_rounded_bold"
                 android:gravity="center"
-                android:padding="10dp"
+                android:padding="20dp"
                 android:text="@string/about"
                 android:textColor="@color/faded_blue"
                 android:textSize="18sp"

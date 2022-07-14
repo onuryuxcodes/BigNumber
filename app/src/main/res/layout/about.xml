@@ -56,7 +56,11 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
 
-        <ImageView
+        <TextView
+            android:textSize="20sp"
+            android:text="@string/app_name"
+            android:textColor="@color/bubble_gum"
+            android:fontFamily="@font/arial_rounded_bold"
             android:src="@drawable/ic_big_number"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
