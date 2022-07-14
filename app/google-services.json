@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "524686019965",
+    "project_id": "hidro-bignumber",
+    "storage_bucket": "hidro-bignumber.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524686019965:android:156b2c52751809f1271014",
+        "android_client_info": {
+          "package_name": "io.hidro.bignumber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "524686019965-fi7ghgtf9cvj7lh4iccgspff57f37paf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.hidro.bignumber",
+            "certificate_hash": "be48478f2f11a864c75f409883ecf05c9b091e3a"
+          }
+        },
+        {
+          "client_id": "524686019965-sacc3ahmbgjt1c37aim9pbap0it6rfuh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB97TB0TodFSLASNo9vroIakyn-LnH-HTw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "524686019965-sacc3ahmbgjt1c37aim9pbap0it6rfuh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
