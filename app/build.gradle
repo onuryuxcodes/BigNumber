@@ -75,4 +75,8 @@ dependencies {
     //Custom Tabs
     implementation 'androidx.browser:browser:1.4.0'
 
+    //AdMob
+    implementation 'com.google.android.gms:play-services-ads:21.0.0'
+
+
 }
