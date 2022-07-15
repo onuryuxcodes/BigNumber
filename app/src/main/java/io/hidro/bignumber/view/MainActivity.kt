@@ -12,6 +12,7 @@ import com.google.android.play.core.review.ReviewManagerFactory
 import io.hidro.bignumber.R
 import io.hidro.bignumber.databinding.ActivityMainBinding
 import io.hidro.bignumber.util.Constants.Companion.CORRECT_ANSWER
+import io.hidro.bignumber.util.Constants.Companion.HAS_SEEN_ONBOARDING
 import io.hidro.bignumber.util.Constants.Companion.HIGH_SCORE_KEY
 import io.hidro.bignumber.util.Constants.Companion.PLAY_COUNT
 import io.hidro.bignumber.util.Constants.Companion.SCORE_KEY
@@ -43,6 +44,14 @@ class MainActivity : BaseActivity() {
         setClickListeners()
         checkForHighestScoreReminder()
         initAdMob()
+        checkIfHasToSeeOnboarding()
+    }
+
+    private fun checkIfHasToSeeOnboarding() {
+        if (!hasSeenOnboarding()) {
+            setHasSeenOnboarding()
+            goToActivity(Intent(this, OnboardingActivity::class.java))
+        }
     }
 
     private fun setClickListeners() {
@@ -110,13 +119,26 @@ class MainActivity : BaseActivity() {
     }
 
     private fun getPlayCount(): Int {
-        val sharedPref = getSharedPreferences() ?: return 0
+        val sharedPref = getSharedPreferences() 
         return sharedPref.getInt(PLAY_COUNT, 0)
     }
 
     private fun getSuccessfulGamePlayCount(): Int {
-        val sharedPref = getSharedPreferences() ?: return 0
+        val sharedPref = getSharedPreferences()
         return sharedPref.getInt(PLAY_COUNT, 0)
+    }
+
+    private fun hasSeenOnboarding(): Boolean {
+        val sharedPref = getSharedPreferences()
+        return sharedPref.getBoolean(HAS_SEEN_ONBOARDING, false)
+    }
+
+    private fun setHasSeenOnboarding() {
+        val sharedPref = getSharedPreferences()
+        with(sharedPref.edit()) {
+            putBoolean(HAS_SEEN_ONBOARDING, true)
+            apply()
+        }
     }
 
     private fun incrementPlayCount() {
@@ -156,7 +178,7 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private fun initAdMob(){
+    private fun initAdMob() {
         MobileAds.initialize(this) {}
     }
 }
