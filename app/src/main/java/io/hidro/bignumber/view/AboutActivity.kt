@@ -2,7 +2,6 @@ package io.hidro.bignumber.view
 
 import android.net.Uri
 import android.os.Bundle
-import android.text.method.LinkMovementMethod
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
