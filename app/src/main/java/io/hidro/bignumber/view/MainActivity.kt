@@ -33,8 +33,6 @@ class MainActivity : BaseActivity() {
                 val score = it.data?.getIntExtra(SCORE_KEY, 0)
                 val verbalAnswer = it.data?.getStringExtra(CORRECT_ANSWER)
                 showGameEndedUI(score, verbalAnswer)
-                if (showRatePopupCondition())
-                    showRatePopup()
             }
         }
 
@@ -44,13 +42,13 @@ class MainActivity : BaseActivity() {
         setClickListeners()
         checkForHighestScoreReminder()
         initAdMob()
-        checkIfHasToSeeOnboarding()
     }
 
-    private fun checkIfHasToSeeOnboarding() {
+    private fun goToOnboarding() {
         if (!hasSeenOnboarding()) {
             setHasSeenOnboarding()
             goToActivity(Intent(this, OnboardingActivity::class.java))
+            binding.play.text = getString(R.string.play)
         }
     }
 
@@ -61,6 +59,13 @@ class MainActivity : BaseActivity() {
         }
         binding.aboutText.setOnClickListener {
             goToActivity(Intent(this, AboutActivity::class.java))
+        }
+        if (!hasSeenOnboarding()) {
+            binding.play.text = getString(R.string.get_started)
+            binding.play.setOnClickListener {
+                goToOnboarding()
+                setClickListeners()
+            }
         }
     }
 
@@ -119,7 +124,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun getPlayCount(): Int {
-        val sharedPref = getSharedPreferences() 
+        val sharedPref = getSharedPreferences()
         return sharedPref.getInt(PLAY_COUNT, 0)
     }
 
