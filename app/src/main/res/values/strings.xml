@@ -16,4 +16,11 @@
     <string name="onur_web_hyper_link"><a href="http://onur.es/">onur.es</a></string>
     <string name="verbally_constructed_correct_answer">%1$s is actually greater than %2$s</string>
 
+    <!--Onboarding-->
+    <string name="onboarding_title">Quick info on decimal numbers</string>
+    <string name="onboarding_text">Our decimal numbers are shown like this:</string>
+    <string name="onboarding_decimal">22,3</string>
+    <string name="onboarding_text2">This means that 22,3 is 3 step greater than 22 and 7 step smaller than 23.</string>
+    <string name="onboarding_done">Alright!</string>
+
 </resources>
