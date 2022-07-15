@@ -21,8 +21,7 @@ class BigNumberGameVM : ViewModel() {
     private var timeUserStartedTheCurrentStep: Long = 0L
     private var gameStartTimeInMs: Long? = null
 
-    //Proportional to the probability of getting a hard question
-    private var currentStep = 0
+    private var currentStep = 0 //Proportional to the probability of getting a harder question
     val timeIsUp = MutableLiveData(false)
     var currentLowerBound = 0
     private var currentUpperBound = 100
@@ -42,10 +41,11 @@ class BigNumberGameVM : ViewModel() {
         )
         val delta = CommonMathFunctions.generateRandomDelta(currentStep, currentDeltaUpperBound)
         val secondNumber = roundToOneDecimal(firstNumber + delta)
+        val randomCompositionType = CommonMathFunctions.pickARandomCompositionTypeBetweenSumAndSubtraction()
         val composedNumber1 = ComposedNumber(
             unit1 = CommonMathFunctions.compose(
                 firstNumber,
-                CompositionOperators.SUM
+                randomCompositionType
             )
         )
         val composedNumber2 = ComposedNumber(

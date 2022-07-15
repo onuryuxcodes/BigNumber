@@ -67,6 +67,17 @@ class CommonMathFunctions {
         fun pickARandomCompositionType(): Int = Random.nextInt(1, 3)
 
         /**
+         * Returns [CompositionOperators.SUM] or [CompositionOperators.SUBTRACTION]
+         * based on random boolean
+         */
+        fun pickARandomCompositionTypeBetweenSumAndSubtraction(): CompositionOperators {
+            return if (Random.nextBoolean())
+                CompositionOperators.SUBTRACTION
+            else
+                CompositionOperators.SUM
+        }
+
+        /**
          * Composes given [number] from [operation]
          */
         fun compose(
@@ -87,10 +98,19 @@ class CommonMathFunctions {
                     )
                 }
                 CompositionOperators.SUBTRACTION -> {
-                    val coefficient = Random.nextDouble(1.0, 3.0)
-                    val firstPart = number * coefficient
-                    val secondPart = firstPart - number
-                    return Triple(number, secondPart, operation)
+                    var bound = (number / 2).toInt()
+                    if (bound <= 1)
+                        bound = 2
+                    var difference = Random.nextInt(1, bound).toDouble()
+                    if (Random.nextBoolean())
+                        difference = +Random.nextDouble(0.0, 0.1)
+                    val firstPart = number + difference
+                    difference = roundToOneDecimal(difference)
+                    return Triple(
+                        roundToOneDecimal(firstPart),
+                        difference,
+                        operation
+                    )
                 }
                 CompositionOperators.MULTIPLICATION -> {
                     val coefficient = Random.nextDouble(1.0, 3.0)
