@@ -56,6 +56,9 @@ dependencies {
     // Animations
     def lottieVersion = "5.2.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
+    def dynamic_animation_version = '1.0.0'
+    implementation "androidx.dynamicanimation:dynamicanimation:$dynamic_animation_version"
+
 
     // Views
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.2.0"

@@ -1,16 +1,22 @@
 package io.hidro.bignumber.view
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
+import android.view.ViewTreeObserver
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
+import androidx.dynamicanimation.animation.SpringAnimation
+import androidx.dynamicanimation.animation.SpringForce
 import com.google.android.gms.ads.MobileAds
 import com.google.android.play.core.review.ReviewManagerFactory
 import io.hidro.bignumber.R
 import io.hidro.bignumber.databinding.ActivityMainBinding
+import io.hidro.bignumber.util.AnimationUtils.Companion.createSpringAnimation
 import io.hidro.bignumber.util.Constants.Companion.CORRECT_ANSWER
 import io.hidro.bignumber.util.Constants.Companion.HAS_SEEN_ONBOARDING
 import io.hidro.bignumber.util.Constants.Companion.HIGH_SCORE_KEY
@@ -24,6 +30,8 @@ import io.hidro.bignumber.util.GameParameters.Companion.successfulGamePlayMinSco
 class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    lateinit var springAnimationXAxis: SpringAnimation
+    lateinit var springAnimationYAxis: SpringAnimation
 
     private val receiverForActivityResult =
         registerForActivityResult(
@@ -42,6 +50,61 @@ class MainActivity : BaseActivity() {
         setClickListeners()
         checkForHighestScoreReminder()
         initAdMob()
+        setSpringAnimationToBrainIcon()
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setSpringAnimationToBrainIcon() {
+        val viewForSpringAnim = binding.lottieAnimView
+        viewForSpringAnim.viewTreeObserver.addOnGlobalLayoutListener(object :
+            ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                springAnimationXAxis = createSpringAnimation(
+                    viewForSpringAnim,
+                    SpringAnimation.X,
+                    viewForSpringAnim.x,
+                    SpringForce.STIFFNESS_MEDIUM,
+                    SpringForce.DAMPING_RATIO_MEDIUM_BOUNCY
+                )
+                springAnimationYAxis = createSpringAnimation(
+                    viewForSpringAnim,
+                    SpringAnimation.Y,
+                    viewForSpringAnim.y,
+                    SpringForce.STIFFNESS_MEDIUM,
+                    SpringForce.DAMPING_RATIO_MEDIUM_BOUNCY
+                )
+                viewForSpringAnim.viewTreeObserver.removeOnGlobalLayoutListener(this)
+            }
+        })
+
+        var dX = 0f
+        var dY = 0f
+        viewForSpringAnim.setOnTouchListener { view, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    // capture the difference between view's top left corner and touch point
+                    dX = view.x - event.rawX
+                    dY = view.y - event.rawY
+
+                    // cancel animations so we can grab the view during previous animation
+                    springAnimationXAxis.cancel()
+                    springAnimationYAxis.cancel()
+                }
+                MotionEvent.ACTION_MOVE -> {
+                    //  a different approach would be to change the view's LayoutParams.
+                    view.animate()
+                        .x(event.rawX + dX)
+                        .y(event.rawY + dY)
+                        .setDuration(0)
+                        .start()
+                }
+                MotionEvent.ACTION_UP -> {
+                    springAnimationXAxis.start()
+                    springAnimationYAxis.start()
+                }
+            }
+            true
+        }
     }
 
     private fun goToOnboarding() {
@@ -111,12 +174,12 @@ class MainActivity : BaseActivity() {
     }
 
     private fun getHighestScore(): Int {
-        val sharedPref = getSharedPreferences() ?: return 0
+        val sharedPref = getSharedPreferences()
         return sharedPref.getInt(HIGH_SCORE_KEY, 0)
     }
 
     private fun saveNewHighScore(newHighScore: Int) {
-        val sharedPref = getSharedPreferences() ?: return
+        val sharedPref = getSharedPreferences()
         with(sharedPref.edit()) {
             putInt(HIGH_SCORE_KEY, newHighScore)
             apply()
@@ -148,7 +211,7 @@ class MainActivity : BaseActivity() {
 
     private fun incrementPlayCount() {
         val playCount = getPlayCount()
-        val sharedPref = getSharedPreferences() ?: return
+        val sharedPref = getSharedPreferences()
         with(sharedPref.edit()) {
             putInt(PLAY_COUNT, playCount + 1)
             apply()
@@ -157,7 +220,7 @@ class MainActivity : BaseActivity() {
 
     private fun incrementSuccessfulGamePlayCount() {
         val playCount = getSuccessfulGamePlayCount()
-        val sharedPref = getSharedPreferences() ?: return
+        val sharedPref = getSharedPreferences()
         with(sharedPref.edit()) {
             putInt(SUCCESSFUL_GAME_PLAY_COUNT, playCount + 1)
             apply()
@@ -172,7 +235,7 @@ class MainActivity : BaseActivity() {
             if (task.isSuccessful) {
                 task.result?.let { reviewInfo ->
                     val flow = manager.launchReviewFlow(this, reviewInfo)
-                    flow.addOnCompleteListener { _ ->
+                    flow.addOnCompleteListener {
                         binding.play.isEnabled = true
                     }
                 }
