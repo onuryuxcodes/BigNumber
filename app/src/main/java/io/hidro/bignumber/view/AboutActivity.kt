@@ -1,5 +1,6 @@
 package io.hidro.bignumber.view
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.browser.customtabs.CustomTabColorSchemeParams
@@ -19,6 +20,7 @@ class AboutActivity : BaseActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.about)
         setCloseOnClick()
         setLinkOnClick()
+        setDecimalInfoOnClick()
     }
 
     private fun setLinkOnClick() {
@@ -43,6 +45,12 @@ class AboutActivity : BaseActivity() {
     private fun setCloseOnClick() {
         binding.close.setOnClickListener {
             finish()
+        }
+    }
+
+    private fun setDecimalInfoOnClick() {
+        binding.aboutText2.setOnClickListener {
+            goToActivity(Intent(this, OnboardingActivity::class.java))
         }
     }
 }

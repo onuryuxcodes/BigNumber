@@ -12,10 +12,12 @@
     <string name="pitch">Just pick the bigger number.</string>
     <string name="about">About</string>
     <string name="beta">beta</string>
+    <string name="debug_version">debug version</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="about_this_game">BigNumber [currently in beta] is designed to get our brains working. The rule of the game is simple; always pick the bigger number.\nThis game is being designed and developed by Onur; an independent app developer. For more information about Onur\'s works please visit:</string>
     <string name="onur_web_hyper_link"><a href="http://onur.es/">onur.es</a></string>
     <string name="verbally_constructed_correct_answer">%1$s is actually greater than %2$s</string>
+    <string name="about_decimals">For a quick reminder about decimal numbers <u>click here</u>.</string>
 
     <!--Onboarding-->
     <string name="onboarding_title">Quick info on decimal numbers</string>
@@ -25,7 +27,6 @@
     <string name="onboarding_decimal2">22,1</string>
     <string name="onboarding_decimal3">22,2</string>
     <string name="onboarding_decimal4">22,3</string>
-
     <string name="onboarding_text2">This means that 22,3 is 3 step greater than 22 and 7 step smaller than 23.</string>
     <string name="onboarding_done">Alright!</string>
 

@@ -2,6 +2,7 @@ package io.hidro.bignumber.util
 
 class Constants {
     companion object {
+        const val DEBUG = "debug"
         const val CORRECT_ANSWER = "CORRECT_ANSWER"
         const val SCORE_KEY = "SCORE"
         const val HIGH_SCORE_KEY = "HIGH_SCORE"

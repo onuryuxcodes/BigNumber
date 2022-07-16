@@ -3,6 +3,7 @@ package io.hidro.bignumber.view
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
@@ -14,10 +15,12 @@ import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.dynamicanimation.animation.SpringForce
 import com.google.android.gms.ads.MobileAds
 import com.google.android.play.core.review.ReviewManagerFactory
+import io.hidro.bignumber.BuildConfig
 import io.hidro.bignumber.R
 import io.hidro.bignumber.databinding.ActivityMainBinding
 import io.hidro.bignumber.util.AnimationUtils.Companion.createSpringAnimation
 import io.hidro.bignumber.util.Constants.Companion.CORRECT_ANSWER
+import io.hidro.bignumber.util.Constants.Companion.DEBUG
 import io.hidro.bignumber.util.Constants.Companion.HAS_SEEN_ONBOARDING
 import io.hidro.bignumber.util.Constants.Companion.HIGH_SCORE_KEY
 import io.hidro.bignumber.util.Constants.Companion.PLAY_COUNT
@@ -51,6 +54,9 @@ class MainActivity : BaseActivity() {
         checkForHighestScoreReminder()
         initAdMob()
         setSpringAnimationToBrainIcon()
+        addDebugTagIfNotProd()
+        if (showRatePopupCondition())
+            showRatePopup()
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -244,6 +250,11 @@ class MainActivity : BaseActivity() {
                 Log.d("review task exception", task.exception?.message ?: "")
             }
         }
+    }
+
+    private fun addDebugTagIfNotProd() {
+        if (BuildConfig.BUILD_TYPE == DEBUG)
+            binding.betaTag.text = getString(R.string.debug_version)
     }
 
     private fun initAdMob() {
