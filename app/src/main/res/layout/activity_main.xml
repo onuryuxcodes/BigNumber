@@ -19,6 +19,24 @@
             app:lottie_rawRes="@raw/brain" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/prevent_focus_view1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintHeight_percent="0.35"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/prevent_focus_view2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.35" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main_text_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
