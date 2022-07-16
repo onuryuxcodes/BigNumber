@@ -1,9 +1,8 @@
 package io.hidro.bignumber.util
 
-import kotlin.math.abs
 import kotlin.math.ceil
 import kotlin.math.roundToInt
-import kotlin.random.Random
+
 
 class CommonMathFunctions {
     companion object {
@@ -18,11 +17,11 @@ class CommonMathFunctions {
          */
         fun generateRandomInt(lowerBound: Int, upperBound: Int): Int {
             return if (lowerBound <= upperBound)
-                Random.nextInt(upperBound)+lowerBound
-            else Random.nextInt(abs(upperBound))
+                RandomSamplerFunctionsOfJava.sampleRandomInt(lowerBound, upperBound)
+            else RandomSamplerFunctionsOfJava.sampleRandomInt(0, Math.abs(upperBound))
         }
 
-        const val minDelta = 0.3
+        private const val minDelta = 0.3
 
         /**
          * Returns a random integer between 0.1 to 100
@@ -30,10 +29,11 @@ class CommonMathFunctions {
          * Delta's range is [minDelta] to 100
          */
         fun generateRandomDelta(currentStep: Int, upperBound: Double): Double {
-            var randomDelta = (Random.nextDouble(upperBound / (currentStep + 1))) / 10
+            var randomDelta =
+                (RandomSamplerFunctionsOfJava.sampleRandomDouble(0.0, upperBound)) / 10
             if (randomDelta < minDelta)
                 randomDelta = minDelta
-            if (Random.nextBoolean())
+            if (RandomSamplerFunctionsOfJava.sampleRandomBoolean())
                 randomDelta *= -1
             return randomDelta
         }
@@ -44,7 +44,7 @@ class CommonMathFunctions {
          * Followed by [CompositionOperators.NONE]  20%
          */
         fun pickARandomCompositionOperator(): CompositionOperators {
-            val randomInteger = Random.nextInt(100)
+            val randomInteger = RandomSamplerFunctionsOfJava.sampleRandomInt(100)
             return if (randomInteger < 50)
                 CompositionOperators.SUM
             else if (randomInteger < 60)
@@ -63,14 +63,14 @@ class CommonMathFunctions {
          * 1 means the number is only composed of itself
          * 3 means it is composed by 3 numbers
          */
-        fun pickARandomCompositionType(): Int = Random.nextInt(3)+1
+        fun pickARandomCompositionType(): Int = RandomSamplerFunctionsOfJava.sampleRandomInt(3) + 1
 
         /**
          * Returns [CompositionOperators.SUM] or [CompositionOperators.SUBTRACTION]
          * based on random boolean
          */
         fun pickARandomCompositionTypeBetweenSumAndSubtraction(): CompositionOperators {
-            return if (Random.nextBoolean())
+            return if (RandomSamplerFunctionsOfJava.sampleRandomBoolean())
                 CompositionOperators.SUBTRACTION
             else
                 CompositionOperators.SUM
@@ -88,7 +88,7 @@ class CommonMathFunctions {
                     var bound = number.toInt()
                     if (bound == 0)
                         bound++
-                    val firstPart = Random.nextInt(bound)
+                    val firstPart = RandomSamplerFunctionsOfJava.sampleRandomInt(bound)
                     val secondPart = number - firstPart
                     return Triple(
                         roundToOneDecimal(firstPart.toDouble()),
@@ -100,9 +100,10 @@ class CommonMathFunctions {
                     var bound = (number / 2).toInt()
                     if (bound <= 1)
                         bound = 2
-                    var difference = (Random.nextInt(bound)+1).toDouble()
-                    if (Random.nextBoolean())
-                        difference = +Random.nextDouble(0.1)
+                    var difference =
+                        (RandomSamplerFunctionsOfJava.sampleRandomInt(1, bound)).toDouble()
+                    if (RandomSamplerFunctionsOfJava.sampleRandomBoolean())
+                        difference = +RandomSamplerFunctionsOfJava.sampleRandomDouble(0.0, 1.0)
                     val firstPart = number + difference
                     difference = roundToOneDecimal(difference)
                     return Triple(
@@ -112,12 +113,12 @@ class CommonMathFunctions {
                     )
                 }
                 CompositionOperators.MULTIPLICATION -> {
-                    val coefficient = Random.nextDouble(3.0)+1
+                    val coefficient = RandomSamplerFunctionsOfJava.sampleRandomDouble(1.0, 3.0)
                     val firstPart = number / coefficient
                     return Triple(firstPart, coefficient, operation)
                 }
                 CompositionOperators.DIVISION -> {
-                    val coefficient = Random.nextDouble(3.0)+1
+                    val coefficient = RandomSamplerFunctionsOfJava.sampleRandomDouble(1.0, 3.0)
                     val firstPart = number * coefficient
                     return Triple(firstPart, coefficient, operation)
                 }
