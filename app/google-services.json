@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "524686019965-rrp2o0duv6ghp8josbhpgbgdkuc37e72.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.hidro.bignumber",
+            "certificate_hash": "a4b5a5175ae3c67b2196eb0f3369973912f65976"
+          }
+        },
+        {
           "client_id": "524686019965-sacc3ahmbgjt1c37aim9pbap0it6rfuh.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -40,7 +48,8 @@
             }
           ]
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-4053172216856199~8270999735"
     }
   ],
   "configuration_version": "1"
