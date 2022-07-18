@@ -7,6 +7,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.ads.AdRequest
 import io.hidro.bignumber.R
 import io.hidro.bignumber.databinding.GameBinding
 import io.hidro.bignumber.model.isOnGoing
@@ -35,6 +36,12 @@ class BigNumberGameActivity : BaseActivity() {
         startTheGame()
         observeScore()
         observeGameObject()
+        setAdIdToAdViewAndLoadBanner()
+    }
+
+    private fun setAdIdToAdViewAndLoadBanner() {
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
     }
 
     private fun observeNumberSelection() {
@@ -123,4 +130,5 @@ class BigNumberGameActivity : BaseActivity() {
 
         }
     }
+
 }

@@ -7,4 +7,16 @@
         <item name= "android:fontFamily">@font/arial_rounded_bold</item>
     </style>
 
+    <style name="AdTitle">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name= "android:fontFamily">@font/arial_rounded_bold</item>
+    </style>
+
+    <style name="AdSubtitle">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name= "android:fontFamily">@font/arial_rounded_bold</item>
+    </style>
+
 </resources>

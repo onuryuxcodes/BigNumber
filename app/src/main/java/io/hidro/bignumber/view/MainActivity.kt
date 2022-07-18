@@ -17,6 +17,7 @@ import com.google.android.play.core.review.ReviewManagerFactory
 import io.hidro.bignumber.BuildConfig
 import io.hidro.bignumber.R
 import io.hidro.bignumber.databinding.ActivityMainBinding
+import io.hidro.bignumber.util.AdConstants.Companion.countOfGamePlayToShowAdAfter
 import io.hidro.bignumber.util.AnimationUtils.Companion.createSpringAnimation
 import io.hidro.bignumber.util.Constants.Companion.CORRECT_ANSWER
 import io.hidro.bignumber.util.Constants.Companion.DEBUG
@@ -43,6 +44,7 @@ class MainActivity : BaseActivity() {
                 val score = it.data?.getIntExtra(SCORE_KEY, 0)
                 val verbalAnswer = it.data?.getStringExtra(CORRECT_ANSWER)
                 showGameEndedUI(score, verbalAnswer)
+                showAdIfMeetsCondition()
             }
         }
 
@@ -56,6 +58,7 @@ class MainActivity : BaseActivity() {
         addDebugTagIfNotProd()
         if (showRatePopupCondition())
             showRatePopup()
+        loadInterstitialAd()
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -145,6 +148,14 @@ class MainActivity : BaseActivity() {
 
     private fun showRatePopupCondition() =
         getSuccessfulGamePlayCount() == countOfGamePlayToShowRatePopup
+
+    private fun showAdCondition() =
+        getPlayCount() % countOfGamePlayToShowAdAfter == 0
+
+    private fun showAdIfMeetsCondition() {
+        if (showAdCondition())
+            showInterstitialAd()
+    }
 
     private fun showGameEndedUI(score: Int?, correctAnswer: String?) {
         binding.play.text = getString(R.string.play_again)

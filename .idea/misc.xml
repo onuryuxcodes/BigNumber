@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20512820512820512" />
         <entry key="app/src/main/res/layout/activity_onboarding.xml" value="0.23324275362318841" />
         <entry key="app/src/main/res/layout/game.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/native_ad_view.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1965" />
       </map>
     </option>
