@@ -19,6 +19,7 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
 import io.hidro.bignumber.databinding.NativeAdViewBinding
+import io.hidro.bignumber.util.AdConstants
 import io.hidro.bignumber.util.AdUtils
 import io.hidro.bignumber.util.Constants.Companion.BASE_ACTIVITY_TAG
 
@@ -27,7 +28,6 @@ open class BaseActivity : AppCompatActivity() {
 
     private var mInterstitialAd: InterstitialAd? = null
     private lateinit var firebaseAnalytics: FirebaseAnalytics
-    private lateinit var adViewBinding: NativeAdViewBinding
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
@@ -46,7 +46,7 @@ open class BaseActivity : AppCompatActivity() {
         val adRequest = AdRequest.Builder().build()
         InterstitialAd.load(
             this,
-            "ca-app-pub-3940256099942544/1033173712",
+            AdConstants.INTERSTITIAL_AD_ID,
             adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
