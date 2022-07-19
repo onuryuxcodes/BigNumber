@@ -4,6 +4,7 @@ import android.os.CountDownTimer
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import io.hidro.bignumber.api.FeedbackApi
 import io.hidro.bignumber.model.BigNumberGame
 import io.hidro.bignumber.model.ComposedNumber
 import io.hidro.bignumber.util.CommonMathFunctions
@@ -28,7 +29,9 @@ class BigNumberGameVM : ViewModel() {
     private var currentUpperBound = 100
     private var currentDeltaUpperBound = 100.0
     private var timer: CountDownTimer? = null
-    var isTheOneOnTheRightChosen:Boolean? = null
+    var isTheOneOnTheRightChosen: Boolean? = null
+
+    private var feedbackApi = FeedbackApi()
 
 
     private fun incrementStepNumber() = currentStep++
@@ -42,7 +45,8 @@ class BigNumberGameVM : ViewModel() {
         )
         val delta = CommonMathFunctions.generateRandomDelta(currentStep, currentDeltaUpperBound)
         val secondNumber = roundToOneDecimal(firstNumber + delta)
-        val randomCompositionType = CommonMathFunctions.pickARandomCompositionTypeBetweenSumAndSubtraction()
+        val randomCompositionType =
+            CommonMathFunctions.pickARandomCompositionTypeBetweenSumAndSubtraction()
         val composedNumber1 = ComposedNumber(
             unit1 = CommonMathFunctions.compose(
                 firstNumber,
@@ -124,5 +128,8 @@ class BigNumberGameVM : ViewModel() {
     fun getDurationForTheTurn(): Long {
         return GameParameters.allowedTimeInMsForEachStep + (getCurrentLevel() * additionalTimeInMsForEachLevel).toLong()
     }
+
+    fun saveUserFeedback(userComment: String) = feedbackApi.saveUserFeedback(userComment)
+
 
 }

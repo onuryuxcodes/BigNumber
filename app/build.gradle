@@ -62,6 +62,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     // Firebase Crashlytics
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    // Firebase Firestore
+    implementation 'com.google.firebase:firebase-firestore-ktx'
 
     // Animations
     def lottieVersion = "5.2.0"
