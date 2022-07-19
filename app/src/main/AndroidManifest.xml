@@ -11,19 +11,19 @@
         android:theme="@style/Theme.Bignumber">
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-4053172216856199~8270999735"/>
+            android:value="ca-app-pub-4053172216856199~8270999735" />
         <activity
             android:name=".view.BigNumberGameActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".view.OnboardingActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
+        <activity
+            android:name=".view.FeedbackActivity"
+            android:exported="true" />
         <activity
             android:name=".view.AboutActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".view.MainActivity"
             android:exported="true">
