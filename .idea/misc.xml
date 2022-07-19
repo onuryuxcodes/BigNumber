@@ -3,15 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.11780575539568346" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1965" />
         <entry key="app/src/main/res/drawable/circle.xml" value="0.1965" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1965" />
         <entry key="app/src/main/res/drawable/purple_circle_background.xml" value="0.1965" />
+        <entry key="app/src/main/res/drawable/transparent_purple_background.xml" value="0.1965" />
         <entry key="app/src/main/res/font-v26/arial_rounded.xml" value="0.2791666666666667" />
         <entry key="app/src/main/res/font/arial_rounded.xml" value="0.2791666666666667" />
         <entry key="app/src/main/res/layout/about.xml" value="0.23324275362318841" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.20512820512820512" />
+        <entry key="app/src/main/res/layout/activity_feedback.xml" value="0.21752136752136753" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.12834224598930483" />
         <entry key="app/src/main/res/layout/activity_onboarding.xml" value="0.23324275362318841" />
+        <entry key="app/src/main/res/layout/feedback_view.xml" value="0.202991452991453" />
         <entry key="app/src/main/res/layout/game.xml" value="0.165" />
         <entry key="app/src/main/res/layout/native_ad_view.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1965" />

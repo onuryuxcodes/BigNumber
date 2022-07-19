@@ -31,9 +31,6 @@ class BigNumberGameVM : ViewModel() {
     private var timer: CountDownTimer? = null
     var isTheOneOnTheRightChosen: Boolean? = null
 
-    private var feedbackApi = FeedbackApi()
-
-
     private fun incrementStepNumber() = currentStep++
 
     fun generateNewNumbers() {
@@ -128,8 +125,5 @@ class BigNumberGameVM : ViewModel() {
     fun getDurationForTheTurn(): Long {
         return GameParameters.allowedTimeInMsForEachStep + (getCurrentLevel() * additionalTimeInMsForEachLevel).toLong()
     }
-
-    fun saveUserFeedback(userComment: String) = feedbackApi.saveUserFeedback(userComment)
-
 
 }

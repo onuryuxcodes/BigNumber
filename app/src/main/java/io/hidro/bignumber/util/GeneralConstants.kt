@@ -11,5 +11,6 @@ class GeneralConstants {
         const val SUCCESSFUL_GAME_PLAY_COUNT = "SUCCESSFUL_GAME_PLAY_COUNT"
         const val BASE_ACTIVITY_TAG = "BASE_ACTIVITY_TAG"
         const val ONUR_PERSONAL_WEB = "https://onur.es/"
+        const val FEEDBACK_COUNT ="FEEDBACK_COUNT"
     }
 }

@@ -1,11 +1,14 @@
 package io.hidro.bignumber.view
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.*
@@ -15,6 +18,7 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
 import io.hidro.bignumber.util.AdConstants
+import io.hidro.bignumber.util.GeneralConstants
 import io.hidro.bignumber.util.GeneralConstants.Companion.BASE_ACTIVITY_TAG
 
 
@@ -83,5 +87,19 @@ open class BaseActivity : AppCompatActivity() {
                 Log.d(tag ?: BASE_ACTIVITY_TAG, "Ad showed fullscreen content.")
             }
         }
+    }
+    fun hideKeyboard(activity: Activity) {
+        val imm: InputMethodManager =
+            activity.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        var view: View? = activity.currentFocus
+        if (view == null) {
+            view = View(activity)
+        }
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    fun getFeedbackCount(): Int {
+        val sharedPref = getSharedPreferences()
+        return sharedPref.getInt(GeneralConstants.FEEDBACK_COUNT, 0)
     }
 }

@@ -138,6 +138,9 @@ class MainActivity : BaseActivity() {
                 setClickListeners()
             }
         }
+        binding.feedbackComponent.setOnClickListener {
+            goToActivity(Intent(this, FeedbackActivity::class.java))
+        }
     }
 
     private fun checkForHighestScoreReminder() {
@@ -269,5 +272,13 @@ class MainActivity : BaseActivity() {
 
     private fun initAdMob() {
         MobileAds.initialize(this) {}
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (getFeedbackCount() > 0)
+            binding.feedbackComponent.visibility = View.GONE
+        else if (getFeedbackCount() == 0 && getPlayCount() > 10)
+            binding.feedbackComponent.visibility = View.VISIBLE
     }
 }

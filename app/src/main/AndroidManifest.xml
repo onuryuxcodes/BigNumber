@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="io.hidro.bignumber">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,6 +21,7 @@
             android:name=".view.OnboardingActivity"
             android:exported="true" />
         <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:name=".view.FeedbackActivity"
             android:exported="true" />
         <activity

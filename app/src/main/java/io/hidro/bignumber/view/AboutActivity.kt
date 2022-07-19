@@ -3,6 +3,7 @@ package io.hidro.bignumber.view
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
@@ -21,6 +22,13 @@ class AboutActivity : BaseActivity() {
         setCloseOnClick()
         setLinkOnClick()
         setDecimalInfoOnClick()
+        setFeedbackComponentOnClick()
+        checkIfNeedToHideFeedbackComponent()
+    }
+
+    private fun checkIfNeedToHideFeedbackComponent() {
+        if (getFeedbackCount() > 5)
+            binding.feedbackComponent.visibility = View.GONE
     }
 
     private fun setLinkOnClick() {
@@ -51,6 +59,12 @@ class AboutActivity : BaseActivity() {
     private fun setDecimalInfoOnClick() {
         binding.aboutText2.setOnClickListener {
             goToActivity(Intent(this, OnboardingActivity::class.java))
+        }
+    }
+
+    private fun setFeedbackComponentOnClick() {
+        binding.feedbackComponent.setOnClickListener {
+            goToActivity(Intent(this, FeedbackActivity::class.java))
         }
     }
 }
