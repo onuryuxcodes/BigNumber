@@ -3,6 +3,8 @@ package io.hidro.bignumber.api
 import android.util.Log
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import io.hidro.bignumber.BuildConfig
+import io.hidro.bignumber.util.GeneralConstants
 
 //TODO introduce DI
 class FeedbackApi {
@@ -14,6 +16,8 @@ class FeedbackApi {
     }
 
     fun saveUserFeedback(userComment: String) {
+        if (BuildConfig.BUILD_TYPE == GeneralConstants.DEBUG)
+            return
         val db = Firebase.firestore
         val feedback = hashMapOf(USER_DIRECT_COMMENT_KEY to userComment)
         db.collection(FEEDBACK_COLLECTION_ID)
