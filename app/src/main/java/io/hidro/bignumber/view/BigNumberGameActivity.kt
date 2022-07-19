@@ -11,8 +11,8 @@ import com.google.android.gms.ads.AdRequest
 import io.hidro.bignumber.R
 import io.hidro.bignumber.databinding.GameBinding
 import io.hidro.bignumber.model.isOnGoing
-import io.hidro.bignumber.util.Constants.Companion.CORRECT_ANSWER
-import io.hidro.bignumber.util.Constants.Companion.SCORE_KEY
+import io.hidro.bignumber.util.GeneralConstants.Companion.CORRECT_ANSWER
+import io.hidro.bignumber.util.GeneralConstants.Companion.SCORE_KEY
 import io.hidro.bignumber.util.FormattingFunctions
 import io.hidro.bignumber.vm.BigNumberGameVM
 

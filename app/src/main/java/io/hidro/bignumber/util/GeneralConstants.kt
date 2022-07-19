@@ -1,6 +1,6 @@
 package io.hidro.bignumber.util
 
-class Constants {
+class GeneralConstants {
     companion object {
         const val DEBUG = "debug"
         const val CORRECT_ANSWER = "CORRECT_ANSWER"

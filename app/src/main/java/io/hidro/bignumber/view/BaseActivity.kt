@@ -6,22 +6,16 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.widget.FrameLayout
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
-import com.google.android.gms.ads.nativead.NativeAd
-import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
-import io.hidro.bignumber.databinding.NativeAdViewBinding
 import io.hidro.bignumber.util.AdConstants
-import io.hidro.bignumber.util.AdUtils
-import io.hidro.bignumber.util.Constants.Companion.BASE_ACTIVITY_TAG
+import io.hidro.bignumber.util.GeneralConstants.Companion.BASE_ACTIVITY_TAG
 
 
 open class BaseActivity : AppCompatActivity() {

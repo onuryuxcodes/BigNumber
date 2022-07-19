@@ -19,13 +19,13 @@ import io.hidro.bignumber.R
 import io.hidro.bignumber.databinding.ActivityMainBinding
 import io.hidro.bignumber.util.AdConstants.Companion.countOfGamePlayToShowAdAfter
 import io.hidro.bignumber.util.AnimationUtils.Companion.createSpringAnimation
-import io.hidro.bignumber.util.Constants.Companion.CORRECT_ANSWER
-import io.hidro.bignumber.util.Constants.Companion.DEBUG
-import io.hidro.bignumber.util.Constants.Companion.HAS_SEEN_ONBOARDING
-import io.hidro.bignumber.util.Constants.Companion.HIGH_SCORE_KEY
-import io.hidro.bignumber.util.Constants.Companion.PLAY_COUNT
-import io.hidro.bignumber.util.Constants.Companion.SCORE_KEY
-import io.hidro.bignumber.util.Constants.Companion.SUCCESSFUL_GAME_PLAY_COUNT
+import io.hidro.bignumber.util.GeneralConstants.Companion.CORRECT_ANSWER
+import io.hidro.bignumber.util.GeneralConstants.Companion.DEBUG
+import io.hidro.bignumber.util.GeneralConstants.Companion.HAS_SEEN_ONBOARDING
+import io.hidro.bignumber.util.GeneralConstants.Companion.HIGH_SCORE_KEY
+import io.hidro.bignumber.util.GeneralConstants.Companion.PLAY_COUNT
+import io.hidro.bignumber.util.GeneralConstants.Companion.SCORE_KEY
+import io.hidro.bignumber.util.GeneralConstants.Companion.SUCCESSFUL_GAME_PLAY_COUNT
 import io.hidro.bignumber.util.GameParameters.Companion.countOfGamePlayToShowRatePopup
 import io.hidro.bignumber.util.GameParameters.Companion.successfulGamePlayMinScore
 

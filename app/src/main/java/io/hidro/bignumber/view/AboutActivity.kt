@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import io.hidro.bignumber.R
 import io.hidro.bignumber.databinding.AboutBinding
-import io.hidro.bignumber.util.Constants.Companion.ONUR_PERSONAL_WEB
+import io.hidro.bignumber.util.GeneralConstants.Companion.ONUR_PERSONAL_WEB
 
 class AboutActivity : BaseActivity() {
 
