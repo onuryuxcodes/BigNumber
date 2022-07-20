@@ -265,6 +265,13 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    private fun updateFeedbackComponentVisibility() {
+        if (getFeedbackCount() > 0)
+            binding.feedbackComponent.visibility = View.GONE
+        else if (getFeedbackCount() == 0 && getPlayCount() > 10)
+            binding.feedbackComponent.visibility = View.VISIBLE
+    }
+
     private fun addDebugTagIfNotProd() {
         if (BuildConfig.BUILD_TYPE == DEBUG)
             binding.betaTag.text = getString(R.string.debug_version)
@@ -276,10 +283,6 @@ class MainActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        Log.d("getFeedbackCount",getFeedbackCount().toString())
-        if (getFeedbackCount() > 0)
-            binding.feedbackComponent.visibility = View.GONE
-        else if (getFeedbackCount() == 0 && getPlayCount() > 10)
-            binding.feedbackComponent.visibility = View.VISIBLE
+        updateFeedbackComponentVisibility()
     }
 }
