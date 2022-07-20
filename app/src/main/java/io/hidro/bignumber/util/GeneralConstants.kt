@@ -12,5 +12,6 @@ class GeneralConstants {
         const val BASE_ACTIVITY_TAG = "BASE_ACTIVITY_TAG"
         const val ONUR_PERSONAL_WEB = "https://onur.es/"
         const val FEEDBACK_COUNT ="FEEDBACK_COUNT"
+        const val SHARED_PREFERENCES_TAG = "BIG_NUM_GENERAL_SHARED_PREF"
     }
 }

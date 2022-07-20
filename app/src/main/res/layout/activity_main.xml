@@ -133,6 +133,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <io.hidro.bignumber.customviewcomponents.FeedbackViewComponent
+            android:visibility="gone"
             android:id="@+id/feedback_component"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

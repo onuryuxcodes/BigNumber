@@ -276,6 +276,7 @@ class MainActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
+        Log.d("getFeedbackCount",getFeedbackCount().toString())
         if (getFeedbackCount() > 0)
             binding.feedbackComponent.visibility = View.GONE
         else if (getFeedbackCount() == 0 && getPlayCount() > 10)

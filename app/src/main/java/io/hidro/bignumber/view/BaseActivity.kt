@@ -20,7 +20,7 @@ import com.google.firebase.ktx.Firebase
 import io.hidro.bignumber.util.AdConstants
 import io.hidro.bignumber.util.GeneralConstants
 import io.hidro.bignumber.util.GeneralConstants.Companion.BASE_ACTIVITY_TAG
-
+import io.hidro.bignumber.util.GeneralConstants.Companion.SHARED_PREFERENCES_TAG
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -38,7 +38,7 @@ open class BaseActivity : AppCompatActivity() {
 
     fun goToActivity(intent: Intent) = startActivity(intent)
 
-    fun getSharedPreferences(): SharedPreferences = getPreferences(Context.MODE_PRIVATE)
+    fun getSharedPreferences(): SharedPreferences = getSharedPreferences(SHARED_PREFERENCES_TAG, Context.MODE_PRIVATE)
 
     fun loadInterstitialAd(tag: String? = null) {
         val adRequest = AdRequest.Builder().build()
@@ -88,6 +88,7 @@ open class BaseActivity : AppCompatActivity() {
             }
         }
     }
+
     fun hideKeyboard(activity: Activity) {
         val imm: InputMethodManager =
             activity.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
