@@ -1,5 +1,6 @@
 package io.hidro.bignumber.util
 
+import kotlin.math.abs
 import kotlin.math.ceil
 import kotlin.math.roundToInt
 
@@ -18,17 +19,17 @@ class CommonMathFunctions {
         fun generateRandomInt(lowerBound: Int, upperBound: Int): Int {
             return if (lowerBound <= upperBound)
                 RandomSamplerFunctionsOfJava.sampleRandomInt(lowerBound, upperBound)
-            else RandomSamplerFunctionsOfJava.sampleRandomInt(0, Math.abs(upperBound))
+            else RandomSamplerFunctionsOfJava.sampleRandomInt(0, abs(upperBound))
         }
 
-        private const val minDelta = 0.3
+        private const val minDelta = 0.1
 
         /**
          * Returns a random integer between 0.1 to 100
-         * Probability of delta being smaller increases disproportionally to [currentStep]
-         * Delta's range is [minDelta] to 100
+         * Delta's range is [minDelta] to 10
          */
-        fun generateRandomDelta(currentStep: Int, upperBound: Double): Double {
+        fun generateRandomDelta(currentLevel: Int): Double {
+            val upperBound = 100.0 / currentLevel
             var randomDelta =
                 (RandomSamplerFunctionsOfJava.sampleRandomDouble(0.0, upperBound)) / 10
             if (randomDelta < minDelta)
@@ -81,7 +82,8 @@ class CommonMathFunctions {
          */
         fun compose(
             number: Double,
-            operation: CompositionOperators
+            operation: CompositionOperators,
+            level: Int
         ): Triple<Double, Double?, CompositionOperators> {
             when (operation) {
                 CompositionOperators.SUM -> {
@@ -102,10 +104,14 @@ class CommonMathFunctions {
                         bound = 2
                     var difference =
                         (RandomSamplerFunctionsOfJava.sampleRandomInt(1, bound)).toDouble()
-                    if (RandomSamplerFunctionsOfJava.sampleRandomBoolean())
-                        difference = +RandomSamplerFunctionsOfJava.sampleRandomDouble(0.0, 1.0)
-                    val firstPart = number + difference
-                    difference = roundToOneDecimal(difference)
+                    var differenceSecondPart = 0.0
+                    if (RandomSamplerFunctionsOfJava.sampleRandomBoolean() && level > 3) {
+                        difference = +RandomSamplerFunctionsOfJava.sampleRandomDouble(0.0, 2.0)
+                        differenceSecondPart =
+                            RandomSamplerFunctionsOfJava.sampleRandomDouble(0.0, 1.0)
+                    }
+                    val firstPart = number + difference - differenceSecondPart
+                    difference = roundToOneDecimal(difference + differenceSecondPart)
                     return Triple(
                         roundToOneDecimal(firstPart),
                         difference,

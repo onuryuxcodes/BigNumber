@@ -55,10 +55,15 @@ class MainActivity : BaseActivity() {
         checkForHighestScoreReminder()
         initAdMob()
         setSpringAnimationToBrainIcon()
+        setLevelToButtonText()
         addDebugTagIfNotProd()
         if (showRatePopupCondition())
             showRatePopup()
         loadInterstitialAd()
+    }
+
+    private fun setLevelToButtonText() {
+        binding.play.text = getString(R.string.play_again, getSavedLevel())
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -161,7 +166,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun showGameEndedUI(score: Int?, correctAnswer: String?) {
-        binding.play.text = getString(R.string.play_again)
+        setLevelToButtonText()
         score?.let {
             val highestScore = getHighestScore()
             if (score >= successfulGamePlayMinScore)

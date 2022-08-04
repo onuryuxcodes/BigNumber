@@ -30,6 +30,7 @@ class BigNumberGameActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.game)
         loadCountDownAnimation()
+        initializeLevel()
         initializeGame()
         observeNumberSelection()
         observeIfTimeIsUp()
@@ -58,7 +59,13 @@ class BigNumberGameActivity : BaseActivity() {
             binding.left.text = FormattingFunctions.formatComposedNumbersForScreen(it.first)
             binding.right.text = FormattingFunctions.formatComposedNumbersForScreen(it.second)
             startCountDownAnimation()
+            binding.levelTitle.text = getString(R.string.level, viewModel.getCurrentLevel())
         }
+    }
+
+    private fun initializeLevel() {
+        val level = getSavedLevel()
+        viewModel.currentStep = level * 10
     }
 
     private fun observeScore() {
@@ -129,6 +136,11 @@ class BigNumberGameActivity : BaseActivity() {
             }
 
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        saveLevel(viewModel.getCurrentLevel())
     }
 
 }

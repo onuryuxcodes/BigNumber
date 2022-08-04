@@ -103,4 +103,17 @@ open class BaseActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences()
         return sharedPref.getInt(GeneralConstants.FEEDBACK_COUNT, 0)
     }
+
+    fun getSavedLevel(): Int {
+        val sharedPref = getSharedPreferences()
+        return sharedPref.getInt(GeneralConstants.LEVEL, 1)
+    }
+
+    fun saveLevel(level: Int) {
+        val sharedPref = getSharedPreferences()
+        with(sharedPref.edit()) {
+            putInt(GeneralConstants.LEVEL, level)
+            apply()
+        }
+    }
 }
