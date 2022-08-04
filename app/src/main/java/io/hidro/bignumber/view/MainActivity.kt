@@ -45,6 +45,7 @@ class MainActivity : BaseActivity() {
                 val verbalAnswer = it.data?.getStringExtra(CORRECT_ANSWER)
                 showGameEndedUI(score, verbalAnswer)
                 showAdIfMeetsCondition()
+                setLevelToButtonText()
             }
         }
 
