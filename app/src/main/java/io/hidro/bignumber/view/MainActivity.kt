@@ -56,7 +56,6 @@ class MainActivity : BaseActivity() {
         checkForHighestScoreReminder()
         initAdMob()
         setSpringAnimationToBrainIcon()
-        setLevelToButtonText()
         addDebugTagIfNotProd()
         if (showRatePopupCondition())
             showRatePopup()
