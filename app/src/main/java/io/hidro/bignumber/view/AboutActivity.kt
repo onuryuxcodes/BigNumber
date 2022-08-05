@@ -36,16 +36,11 @@ class AboutActivity : BaseActivity() {
             val url = ONUR_PERSONAL_WEB
             val builder = CustomTabsIntent.Builder()
             val customTabsIntent: CustomTabsIntent = builder.build()
-            builder.setDefaultColorSchemeParams(
-                CustomTabColorSchemeParams.Builder().setToolbarColor(
-                    ContextCompat.getColor(this, R.color.purple_700)
-                ).build()
-            )
-            builder.setStartAnimations(
-                this,
-                R.anim.slide_in_from_bottom,
-                R.anim.slide_down_from_top
-            )
+            val params = CustomTabColorSchemeParams.Builder()
+                .setToolbarColor(ContextCompat.getColor(this,R.color.purple_700))
+                .setNavigationBarColor(ContextCompat.getColor(this,R.color.purple_700))
+                .build()
+            builder.setDefaultColorSchemeParams(params).build()
             customTabsIntent.launchUrl(this, Uri.parse(url))
         }
     }
