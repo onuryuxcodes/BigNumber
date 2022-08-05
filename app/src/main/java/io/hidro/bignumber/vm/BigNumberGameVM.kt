@@ -27,7 +27,6 @@ class BigNumberGameVM : ViewModel() {
     val timeIsUp = MutableLiveData(false)
     var currentLowerBound = 0
     private var currentUpperBound = 100
-    private var currentDeltaUpperBound = 100.0
     private var timer: CountDownTimer? = null
     var isTheOneOnTheRightChosen: Boolean? = null
 
