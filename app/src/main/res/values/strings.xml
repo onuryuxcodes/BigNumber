@@ -4,7 +4,7 @@
     <string name="level">level:%1$d</string>
     <string name="choose_smaller">choose the smaller</string>
     <string name="play">Play</string>
-    <string name="play_again">Play Level %1$d!</string>
+    <string name="play_again">Play Again!</string>
     <string name="get_started">Get Started</string>
     <string name="score">Score:%1$s</string>
     <string name="new_high_score">A new High Score:%1$d!</string>

@@ -12,6 +12,9 @@ import io.hidro.bignumber.util.CommonMathFunctions.Companion.roundToOneDecimal
 import io.hidro.bignumber.util.CompositionOperators
 import io.hidro.bignumber.util.GameParameters
 import io.hidro.bignumber.util.GameParameters.Companion.additionalTimeInMsForEachLevel
+import io.hidro.bignumber.util.GameParameters.Companion.stepsEachLevel
+import kotlin.math.ceil
+import kotlin.math.floor
 import kotlin.random.Random
 
 class BigNumberGameVM : ViewModel() {
@@ -23,7 +26,7 @@ class BigNumberGameVM : ViewModel() {
     private var timeUserStartedTheCurrentStep: Long = 0L
     private var gameStartTimeInMs: Long? = null
 
-    var currentStep = 0 //Proportional to the probability of getting a harder question
+    var currentStep = 0
     val timeIsUp = MutableLiveData(false)
     var currentLowerBound = 0
     private var currentUpperBound = 100
@@ -120,7 +123,7 @@ class BigNumberGameVM : ViewModel() {
     }
 
     fun getCurrentLevel(): Int {
-        return currentStep / 10
+        return ceil(currentStep / stepsEachLevel).toInt()
     }
 
     fun getDurationForTheTurn(): Long {

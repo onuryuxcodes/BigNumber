@@ -19,6 +19,8 @@ import io.hidro.bignumber.R
 import io.hidro.bignumber.databinding.ActivityMainBinding
 import io.hidro.bignumber.util.AdConstants.Companion.countOfGamePlayToShowAdAfter
 import io.hidro.bignumber.util.AnimationUtils.Companion.createSpringAnimation
+import io.hidro.bignumber.util.GameParameters.Companion.countOfGamePlayToShowRatePopup
+import io.hidro.bignumber.util.GameParameters.Companion.successfulGamePlayMinScore
 import io.hidro.bignumber.util.GeneralConstants.Companion.CORRECT_ANSWER
 import io.hidro.bignumber.util.GeneralConstants.Companion.DEBUG
 import io.hidro.bignumber.util.GeneralConstants.Companion.HAS_SEEN_ONBOARDING
@@ -26,8 +28,6 @@ import io.hidro.bignumber.util.GeneralConstants.Companion.HIGH_SCORE_KEY
 import io.hidro.bignumber.util.GeneralConstants.Companion.PLAY_COUNT
 import io.hidro.bignumber.util.GeneralConstants.Companion.SCORE_KEY
 import io.hidro.bignumber.util.GeneralConstants.Companion.SUCCESSFUL_GAME_PLAY_COUNT
-import io.hidro.bignumber.util.GameParameters.Companion.countOfGamePlayToShowRatePopup
-import io.hidro.bignumber.util.GameParameters.Companion.successfulGamePlayMinScore
 
 
 class MainActivity : BaseActivity() {
@@ -64,7 +64,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun setLevelToButtonText() {
-        binding.play.text = getString(R.string.play_again, getSavedLevel())
+        binding.play.text = getString(R.string.play_again)
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -218,7 +218,7 @@ class MainActivity : BaseActivity() {
 
     private fun getSuccessfulGamePlayCount(): Int {
         val sharedPref = getSharedPreferences()
-        return sharedPref.getInt(PLAY_COUNT, 0)
+        return sharedPref.getInt(SUCCESSFUL_GAME_PLAY_COUNT, 0)
     }
 
     private fun hasSeenOnboarding(): Boolean {

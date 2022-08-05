@@ -8,9 +8,11 @@ import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.ads.AdRequest
+import com.google.firebase.analytics.FirebaseAnalytics
 import io.hidro.bignumber.R
 import io.hidro.bignumber.databinding.GameBinding
 import io.hidro.bignumber.model.isOnGoing
+import io.hidro.bignumber.tracking.TrackingConstants
 import io.hidro.bignumber.util.GeneralConstants.Companion.CORRECT_ANSWER
 import io.hidro.bignumber.util.GeneralConstants.Companion.SCORE_KEY
 import io.hidro.bignumber.util.FormattingFunctions
@@ -138,9 +140,19 @@ class BigNumberGameActivity : BaseActivity() {
         }
     }
 
+    private fun logLevelEventToFirebaseAnalytics(levelWhenGameIsOver: Int, stepWhenGameIsOver:Int) {
+        FirebaseAnalytics.getInstance(this)
+            .logEvent(FirebaseAnalytics.Event.LEVEL_UP, Bundle().apply {
+                putInt(TrackingConstants.LEVEL_KEY, levelWhenGameIsOver)
+                putInt(TrackingConstants.STEP_KEY, stepWhenGameIsOver)
+            })
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        saveLevel(viewModel.getCurrentLevel())
+        val currentLevel = viewModel.getCurrentLevel()
+        logLevelEventToFirebaseAnalytics(levelWhenGameIsOver = currentLevel, stepWhenGameIsOver = viewModel.currentStep)
+        saveLevel(currentLevel)
     }
 
 }

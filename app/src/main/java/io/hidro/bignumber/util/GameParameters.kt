@@ -6,6 +6,6 @@ class GameParameters {
         const val additionalTimeInMsForEachLevel = 0
         const val countOfGamePlayToShowRatePopup = 4
         const val successfulGamePlayMinScore = 100
-        const val stepsEachLevel = 20
+        const val stepsEachLevel = 20.0
     }
 }
