@@ -86,6 +86,7 @@ class BigNumberGameActivity : BaseActivity() {
 
     private fun startTheGame() {
         viewModel.generateNewNumbers()
+        viewModel.restartCountdownTimer()
         binding.timeIndicator.visibility = View.VISIBLE
     }
 

@@ -90,11 +90,12 @@ class CommonMathFunctions {
                     var bound = number.toInt()
                     if (bound == 0)
                         bound++
-                    val firstPart = RandomSamplerFunctionsOfJava.sampleRandomInt(bound)
-                    val secondPart = number - firstPart
+                    val randomSample = RandomSamplerFunctionsOfJava.sampleRandomInt(bound)
+                    val firstPart = roundToOneDecimal(randomSample.toDouble())
+                    val secondPart = roundToOneDecimal(number - firstPart)
                     return Triple(
-                        roundToOneDecimal(firstPart.toDouble()),
-                        roundToOneDecimal(secondPart),
+                        firstPart,
+                        secondPart,
                         operation
                     )
                 }

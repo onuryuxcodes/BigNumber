@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import io.hidro.bignumber.api.FeedbackApi
 import io.hidro.bignumber.model.BigNumberGame
 import io.hidro.bignumber.model.ComposedNumber
+import io.hidro.bignumber.model.actualValue
 import io.hidro.bignumber.util.CommonMathFunctions
 import io.hidro.bignumber.util.CommonMathFunctions.Companion.roundToOneDecimal
 import io.hidro.bignumber.util.CompositionOperators
@@ -20,7 +21,6 @@ import kotlin.random.Random
 class BigNumberGameVM : ViewModel() {
 
     val bigNumberGame = MutableLiveData<BigNumberGame>()
-    private val numberPair = MutableLiveData<Pair<Double, Double>>()
     val composedNumberPair = MutableLiveData<Pair<ComposedNumber, ComposedNumber>>()
     val score = MutableLiveData(0)
     private var timeUserStartedTheCurrentStep: Long = 0L
@@ -61,31 +61,28 @@ class BigNumberGameVM : ViewModel() {
             )
         )
         if (Random.nextBoolean()) {
-            numberPair.value = Pair(firstNumber, secondNumber)
             composedNumberPair.value = Pair(composedNumber1, composedNumber2)
         } else {
-            numberPair.value = Pair(secondNumber, firstNumber)
             composedNumberPair.value = Pair(composedNumber2, composedNumber1)
         }
         timeUserStartedTheCurrentStep = System.currentTimeMillis()
     }
 
     fun numberOnTheLeftIsChosen() {
-        numberPair.value?.let { numberPair ->
+        composedNumberPair.value?.let { numberPair ->
             isTheOneOnTheRightChosen = false
-            evaluateUsersAnswer(numberPair.first, numberPair.second)
+            evaluateUsersAnswer(numberPair.first.actualValue(), numberPair.second.actualValue())
         }
     }
 
     fun numberOnTheRightIsChosen() {
-        numberPair.value?.let { numberPair ->
+        composedNumberPair.value?.let { numberPair ->
             isTheOneOnTheRightChosen = true
-            evaluateUsersAnswer(numberPair.second, numberPair.first)
+            evaluateUsersAnswer(numberPair.second.actualValue(), numberPair.first.actualValue())
         }
     }
 
     private fun evaluateUsersAnswer(usersChoiceAsTheBigOne: Double, theOtherNumber: Double) {
-        numberPair.value?.let {
             when {
                 usersChoiceAsTheBigOne >= theOtherNumber -> {
                     updateScore()
@@ -96,7 +93,6 @@ class BigNumberGameVM : ViewModel() {
                     endGame()
                 }
             }
-        }
     }
 
     private fun updateScore() {
@@ -108,7 +104,7 @@ class BigNumberGameVM : ViewModel() {
         score.value = score.value?.plus(scoreFromCurrentStep)
     }
 
-    private fun restartCountdownTimer() {
+    fun restartCountdownTimer() {
         timer?.cancel()
         timer = object : CountDownTimer(getDurationForTheTurn(), 1000) {
             override fun onTick(millisUntilFinished: Long) {}
