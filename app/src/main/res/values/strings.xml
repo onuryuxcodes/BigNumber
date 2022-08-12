@@ -23,20 +23,20 @@
     <!--Onboarding-->
     <string name="onboarding_title">Quick info on decimal numbers</string>
     <string name="onboarding_text">Our decimal numbers are shown like this:</string>
-    <string name="onboarding_decimal">22,3</string>
+    <string name="onboarding_decimal">22.3</string>
     <string name="onboarding_decimal1">22</string>
-    <string name="onboarding_decimal2">22,1</string>
-    <string name="onboarding_decimal3">22,2</string>
-    <string name="onboarding_decimal4">22,3</string>
-    <string name="onboarding_text2">This means that 22,3 is 3 step greater than 22 and 7 step smaller than 23.</string>
+    <string name="onboarding_decimal2">22.1</string>
+    <string name="onboarding_decimal3">22.2</string>
+    <string name="onboarding_decimal4">22.3</string>
+    <string name="onboarding_text2">This means that 22.3 is 3 step greater than 22 and 7 step smaller than 23.</string>
     <string name="onboarding_done">Alright!</string>
 
     <!--Feedback-->
     <string name="feedback_pitch">Give feedback about the game to make it better! More features coming soon based on your comments.\nClick⬇️️</string>
     <string name="send">Send</string>
-    <string name="feedback_title">What do you think of the game? What kind of features or new levels would you like to see?</string>
+    <string name="feedback_title">What do you think of the game? What kind of features or levels would you like to see?</string>
     <string name="type">Type here.</string>
-    <string name="feedback_info">Your feedback is completely anonymous. Please do not share any personal data such as contact information and so.</string>
+    <string name="feedback_info">Your feedback is completely anonymous. Please do not share any personal data such as your name, contact information and so.</string>
     <string name="thank_you">Thank you for the feedback!</string>
 
 
