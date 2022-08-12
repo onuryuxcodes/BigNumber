@@ -10,7 +10,7 @@ class GeneralConstants {
         const val HAS_SEEN_ONBOARDING = "HAS_SEEN_ONBOARDING"
         const val SUCCESSFUL_GAME_PLAY_COUNT = "SUCCESSFUL_GAME_PLAY_COUNT"
         const val BASE_ACTIVITY_TAG = "BASE_ACTIVITY_TAG"
-        const val ONUR_PERSONAL_WEB = "https://onur.es/"
+        const val ONUR_PERSONAL_WEB = "http://onur.es/"
         const val FEEDBACK_COUNT ="FEEDBACK_COUNT"
         const val LEVEL ="LEVEL"
         const val SHARED_PREFERENCES_TAG = "BIG_NUM_GENERAL_SHARED_PREF"
